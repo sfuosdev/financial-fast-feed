@@ -1,11 +1,9 @@
-# Roadmap:
-1. Find and List Sources
-2. Code Scrape 
-3. Code Clean Data
-4. Store and Manage Data
-5. GPT to Summarize
+# To Do:
+1. Code Scrape/Fetch RSS Data
+2. Store and Manage Data
+3. GPT to Summarize
+4. Limit Posts per Day
+5. Prevent Dupilcation 
 6. Front End
-7. Test and Iterate 
-
-## Ideas:
-1. Filter by Country, Company, Category, Market Sector
+7. Filter by Category
+8. Test and Iterate 

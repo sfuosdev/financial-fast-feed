@@ -1,36 +1,26 @@
 # RSS Feeds:
 
-cnbc.com
-bloomberg.com
-ft.com
-financialpost.com
-finance.yahoo.com
-marketwatch.com
-coindesk.com
-cryptonews.com
-crypto.news
-theblock.co
-reuters.com/business/finance/
-seekingalpha.com
-zerohedge.com
-wsj.com
-businessinsider.com
-economist.com/finance-and-economics
-barrons.com
-investopedia.com
-nasdaq.com
-fortune.com
-investing.com
-cointelegraph.com
-cryptoslate.com
-bitcoinmagazine.com
-decrypto.co
-theblock.co
+## Categories: 16
 
-# Categories:
+### Crypto: 5
+https://cointelegraph.com/rss
+https://www.coindesk.com/arc/outboundfeeds/rss/?_gl=1*kcfx50*_up*MQ..*_ga*MTAxODQ0NTcwNi4xNzAzMjczODY0*_ga_VM3STRYVN8*MTcwMzI3Mzg2NC4xLjAuMTcwMzI3Mzg2NC4wLjAuMA..
+https://bitcoinmagazine.com/.rss/full/
+https://Blockchain.News/RSS/
+https://www.nasdaq.com/feed/rssoutbound?category=Cryptocurrencies
 
-### Crypto:
 
-### Stock Market Movements:
+### Stock Market Movements: 6
+https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839135
+https://www.nasdaq.com/feed/rssoutbound?category=Earnings
+https://www.nasdaq.com/feed/rssoutbound?category=IPOs
+https://www.nasdaq.com/feed/rssoutbound?category=Stocks
+https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best
+https://seekingalpha.com/feed.xml
 
-### Economic Indicators:
+### Economic Indicators: 5
+https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20910258
+https://tradingeconomics.com/canada/rss
+https://tradingeconomics.com/united-states/rss
+https://apps.bea.gov/rss/rss.xml
+https://www.federalreserve.gov/feeds/press_all.xml
