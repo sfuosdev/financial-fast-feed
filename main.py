@@ -46,5 +46,5 @@ def get_one_article(rss_url):
 
 # Example usage
 if __name__ == "__main__":
-    rss_url = 'https://cointelegraph.com/rss'
+    rss_url = 'link'
     get_one_article(rss_url)
