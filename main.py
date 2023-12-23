@@ -1,7 +1,6 @@
 from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
 
-
 from bs4 import BeautifulSoup
 import requests 
 import feedparser
@@ -54,7 +53,7 @@ def get_one_article(rss_url):
 
 if __name__ == "__main__":
     # Example RSS URL
-    rss_url = 'link'
+    rss_url = 'https://Blockchain.News/RSS/'
 
     # Process the article from the feed
     get_one_article(rss_url)
