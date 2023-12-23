@@ -3,6 +3,9 @@ from rss.fetchRSS import fetch_full_article
 import requests 
 import feedparser
 from bs4 import BeautifulSoup
+from summarize import get_post_insights, num_tokens_from_messages
+
+import openai
 
 def fetch_full_article(article_url):
     headers = {
@@ -46,5 +49,25 @@ def get_one_article(rss_url):
 
 # Example usage
 if __name__ == "__main__":
-    rss_url = 'link'
-    get_one_article(rss_url)
+    # Set your OpenAI API key
+    openai.api_key = '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'
+
+    # Example RSS URL
+    rss_url = 'http://rss.cnn.com/rss/money_news_economy.rss'
+
+ # Fetch one article
+    article = get_one_article(rss_url)
+    
+    if article:
+        title = article.get('title', 'No title available')
+        link = article.get('link', 'No link available')
+        
+        # Fetch the full article text
+        full_text = fetch_full_article(link)
+
+        # Get insights (summary and buzzwords)
+        insights = get_post_insights(title, full_text)
+
+        # Display or process the summary
+        print(f"Summary: {insights['summary']}")
+        print(f"Buzzwords: {', '.join(insights['buzzwords'])}")
