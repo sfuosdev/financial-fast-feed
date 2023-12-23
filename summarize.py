@@ -44,7 +44,15 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
     num_tokens += 3  # every reply is primed with <|start|>assistant<|message|>
     return num_tokens
 
-
+def get_post_insights(title, fullText, model="gpt-3.5-turbo"):
+    prompt = f"Summarize this article in one to two sentences based on the title and full text I provide you. Title: '{title}' Full Text: '{fullText}'"
+    
+    messages = [
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": prompt}
+    ]
+    
+    """
 def get_post_insights(title, fullText, model="gpt-3.5-turbo"):
     # Set maximum number of tokens
     max_tokens = 4096
@@ -56,6 +64,14 @@ def get_post_insights(title, fullText, model="gpt-3.5-turbo"):
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": prompt},
     ]
+    try:
+        completion = openai.ChatCompletion.create(model=model, messages=messages)
+        content = completion.choices[0].message["content"]
+        # Parse JSON response here as needed
+        return content  # Or return a parsed version of the response
+    except Exception as e:
+        print(f"Error in API call: {e}")
+        return "No summary generated due to API error."
 
     # Get the number of tokens for the message
     num_tokens = num_tokens_from_messages(messages, model=model)
@@ -66,7 +82,7 @@ def get_post_insights(title, fullText, model="gpt-3.5-turbo"):
         fullText = fullText[: int(len(fullText) * 0.9)]
         prompt = f"Summarize this article in one to two sentences based on the title and full text I provide you. Also, give me a list of the top 5 most important buzzwords from the same. Respond only in JSON, using 'summary' and 'buzzwords' as the keys. Do not say what you're describing, i.e. don't start with 'this blogpost is about'.\n\nTitle: '{title}'\n\nFull Text: '{fullText}'"
         messages[-1]["content"] = prompt
-        num_tokens = num_tokens_from_messages(messages, model=model)  # Recalculate the token count
+        num_tokens = num_tokens_from_messages(messages, model=model)
 
     # Obtain completion for the prompt
     completion = openai.ChatCompletion.create(model=model, messages=messages)
@@ -81,3 +97,4 @@ def get_post_insights(title, fullText, model="gpt-3.5-turbo"):
     summary = result.get("summary", "No summary generated.")
     buzzwords = result.get("buzzwords", [])
     return {"summary": summary, "buzzwords": buzzwords}
+"""

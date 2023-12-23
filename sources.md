@@ -1,8 +1,8 @@
 # RSS Feeds:
 
-## Categories: 14
+## Categories: 12
 
-### Crypto: 4
+### Crypto: 2
 ## https://www.coindesk.com/arc/outboundfeeds/rss/?_gl=1*kcfx50*_up*MQ..*_ga*MTAxODQ0NTcwNi4xNzAzMjczODY0*_ga_VM3STRYVN8*MTcwMzI3Mzg2NC4xLjAuMTcwMzI3Mzg2NC4wLjAuMA..
 ## https://Blockchain.News/RSS/
 
