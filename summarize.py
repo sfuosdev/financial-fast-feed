@@ -4,11 +4,11 @@ def summarize_article(article_text):
     """
     Summarizes the given article text using OpenAI's GPT model.
     """
-    client = OpenAI(api_key="key")  # Replace 'YOUR_API_KEY' with your actual API key
+    client = OpenAI(api_key="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")  # Replace 'YOUR_API_KEY' with your actual API key
 
     try:
         response = client.completions.create(
-            model="text-davinci-003",  # or another model you prefer
+            model="gpt-3.5-turbo-instruct",  # or another model you prefer
             prompt=f"Summarize the given article in 30 words or less:\n\n{article_text}",
             max_tokens = 3800  # Adjust based on your needs
         )

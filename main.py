@@ -53,7 +53,7 @@ def get_multiple_articles(rss_url, number_of_articles=3):
 
 if __name__ == "__main__":
     # Example RSS URL
-    rss_url = 'http://rss.cnn.com/rss/money_news_economy.rss'
+    rss_url = 'https://Blockchain.News/RSS/'
 
     # Process the article from the feed
     get_multiple_articles(rss_url)
