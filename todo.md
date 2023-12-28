@@ -6,5 +6,5 @@
 5. Store and Manage Data
 6. Front End
 7. Filter by Category
-8. Other Frontend Features  s
+8. Other Frontend Features
 9. Test and Iterate 

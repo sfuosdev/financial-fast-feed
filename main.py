@@ -25,17 +25,19 @@ def fetch_full_article(article_url, max_paragraphs=5):
     except Exception as e:
         return f"Error fetching full article: {e}"
 
-def get_one_article(rss_url):
+def get_multiple_articles(rss_url, number_of_articles=3):
     """
-    Fetches one article from an RSS feed.
+    Fetches multiple articles from an RSS feed.
+    number_of_articles: Number of articles to process from the feed.
     """
     headers = {'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'}
     response = requests.get(rss_url, headers=headers)
 
     if response.status_code == 200:
         feed = feedparser.parse(response.content)
-        if feed.entries:
-            item = feed.entries[0]  # Get the first article
+        articles = feed.entries[:number_of_articles]  # Process the specified number of articles
+
+        for item in articles:
             title = item.get('title', 'No title available')
             link = item.get('link', 'No link available')
             description = item.get('description', 'No description available')
@@ -45,16 +47,14 @@ def get_one_article(rss_url):
             full_article = fetch_full_article(link)
             summary = summarize_article(full_article)
 
-            print(f"Title: {title}\nLink: {link}\nDescription: {description}\nDate: {pub_date}\nAuthor: {author}\nSummary: {summary}")
-        else:
-            print("No items found in the RSS feed.")
+            print(f"Title: {title}\nLink: {link}\nDescription: {description}\nDate: {pub_date}\nAuthor: {author}\nSummary: {summary}\n")
     else:
         print(f"Failed to fetch RSS feed. HTTP Status Code: {response.status_code}")
 
 if __name__ == "__main__":
     # Example RSS URL
-    rss_url = 'https://Blockchain.News/RSS/'
+    rss_url = 'http://rss.cnn.com/rss/money_news_economy.rss'
 
     # Process the article from the feed
-    get_one_article(rss_url)
+    get_multiple_articles(rss_url)
 
