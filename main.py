@@ -1,11 +1,13 @@
 from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
 
+from db import connect_to_mongodb, insert_article
+
 from bs4 import BeautifulSoup
 import requests 
 import feedparser
 
-def fetch_full_article(article_url, max_paragraphs=5):
+def fetch_full_article(article_url, max_paragraphs=3):
     """
     Fetches and truncates the full article content from a given URL.
     max_paragraphs: Maximum number of paragraphs to include in the summary.
@@ -25,7 +27,7 @@ def fetch_full_article(article_url, max_paragraphs=5):
     except Exception as e:
         return f"Error fetching full article: {e}"
 
-def get_multiple_articles(rss_url, number_of_articles=1):
+def get_multiple_articles(rss_url, number_of_articles=2):
     """
     Fetches multiple articles from an RSS feed.
     number_of_articles: Number of articles to process from the feed.
@@ -52,7 +54,10 @@ def get_multiple_articles(rss_url, number_of_articles=1):
         print(f"Failed to fetch RSS feed. HTTP Status Code: {response.status_code}")
 
 if __name__ == "__main__":
-    # List of example RSS URLs
+    mongodb_uri = "URI"
+    db_client = connect_to_mongodb(mongodb_uri)
+    db = db_client.newsData.Main # Replace with your database name
+    # RSS Feeds looped through, fetched, and summarized
     rss_urls = [
         #Crypto
         'https://Blockchain.News/RSS/',
@@ -73,5 +78,20 @@ if __name__ == "__main__":
     # Process articles from each feed
     for rss_url in rss_urls:
         print(f"Fetching articles from: {rss_url}\n")
-        get_multiple_articles(rss_url)
+        articles = get_multiple_articles(rss_url)
+        
+        for article in articles:
+            # Prepare the article data for insertion
+            article_data = {
+                "title": article["title"],
+                "link": article["link"],
+                "description": article["description"],
+                "date": article["pub_date"],
+                "author": article["author"],
+                "summary": article["summary"]
+            }
+
+            # Insert the article data into MongoDB
+            insert_article(db, article_data)
+        
         print("\n-----\n")

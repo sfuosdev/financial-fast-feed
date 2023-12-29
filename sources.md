@@ -1,17 +1,16 @@
 # RSS Feeds:
 
-## Categories: 12
+## Categories: 11
 
 ### Crypto: 3
 ## https://Blockchain.News/RSS/
 ## https://bitcoinist.com/feed/
 ## https://www.newsbtc.com/feed/
 
-### Stock Market Movements: 5
+### Stock Market Movements: 4
 ## https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best
 ## https://seekingalpha.com/feed.xml
 ## https://feeds.a.dj.com/rss/RSSMarketsMain.xml
-## https://www.bankofcanada.ca/utility/news/feed/
 ## https://www.frbsf.org/our-district/about/sf-fed-blog-rss-feed/
 
 

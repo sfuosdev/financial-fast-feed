@@ -9,7 +9,7 @@ def summarize_article(article_text):
     try:
         response = client.completions.create(
             model="gpt-3.5-turbo-instruct",  # or another model you prefer
-            prompt=f"Summarize the given article in 30 words or less:\n\n{article_text}",
+            prompt=f"Summarize the given article in 20 words or less:\n\n{article_text}",
             max_tokens = 3800  # Adjust based on your needs
         )
         return response.choices[0].text.strip()
