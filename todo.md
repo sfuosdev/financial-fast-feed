@@ -1,10 +1,6 @@
 # To Do:
-1. Code Scrape/Fetch RSS Data
-2. GPT to Summarize
-3. Limit Posts per Day
-4. Prevent Dupilcation 
-5. Store and Manage Data
-6. Front End
-7. Filter by Category
-8. Other Frontend Features
-9. Test and Iterate 
+1. Store and Manage Data
+2. Front End
+3. Filter by Category
+4. Other Frontend Features
+5. Test and Iterate 

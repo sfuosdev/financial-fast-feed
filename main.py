@@ -11,7 +11,7 @@ def fetch_full_article(article_url, max_paragraphs=5):
     max_paragraphs: Maximum number of paragraphs to include in the summary.
     """
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     }
     try:
@@ -53,7 +53,7 @@ def get_multiple_articles(rss_url, number_of_articles=3):
 
 if __name__ == "__main__":
     # Example RSS URL
-    rss_url = 'https://Blockchain.News/RSS/'
+    rss_url = 'https://www.frbsf.org/our-district/about/sf-fed-blog-rss-feed/'
 
     # Process the article from the feed
     get_multiple_articles(rss_url)
