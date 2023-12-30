@@ -1,15 +1,24 @@
 from pymongo import MongoClient
+import logging
 
 def connect_to_mongodb(uri):
-    """
-    Establishes a connection to MongoDB.
-    """
-    client = MongoClient(uri)
-    return client
+    try:
+        client = MongoClient(uri)
+        return client
+    except Exception as e:
+        logging.error(f"Failed to connect to MongoDB: {e}")
+        return None
 
-def insert_article(db, article_data):
-    """
-    Inserts a single article into the MongoDB database.
-    """
-    articles_collection = db.articles
-    return articles_collection.insert_one(article_data)
+def get_database(uri, dbname):
+    client = connect_to_mongodb(uri)
+    if client is not None:
+        return client[dbname]
+    else:
+        return None
+
+def insert_article(collection, article_data):
+    try:
+        return collection.insert_one(article_data)
+    except Exception as e:
+        logging.error(f"Failed to insert article into MongoDB: {e}")
+        return None
