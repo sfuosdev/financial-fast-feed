@@ -16,9 +16,11 @@ def get_database(uri, dbname):
     else:
         return None
 
-def insert_article(collection, article_data):
+def insert_article(db, article_data):
     try:
-        return collection.insert_one(article_data)
+        articles_collection = db.articles
+        return articles_collection.insert_one(article_data)
     except Exception as e:
-        logging.error(f"Failed to insert article into MongoDB: {e}")
+        print(f"Error inserting article: {e}")
         return None
+

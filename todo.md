@@ -1,6 +1,7 @@
 # To Do:
-1. Store and Manage Data
-2. Front End
-3. Filter by Category
-4. Other Frontend Features
-5. Test and Iterate 
+1. Crontab Run Cloud
+2. Buy Domain - Setup Webhost on Vercel
+3. Front End
+4. Filter by Category
+5. Other Frontend Features
+6. Test and Iterate 

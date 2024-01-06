@@ -4,7 +4,7 @@ def summarize_article(article_text):
     """
     Summarizes the given article text using OpenAI's GPT model.
     """
-    client = OpenAI(api_key="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")  # Replace 'YOUR_API_KEY' with your actual API key
+    client = OpenAI(api_key="KEY")  # Replace 'YOUR_API_KEY' with your actual API key
 
     try:
         response = client.completions.create(

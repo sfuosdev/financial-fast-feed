@@ -28,7 +28,7 @@ def fetch_full_article(article_url, max_paragraphs=3):
         return f"Error fetching full article: {e}"
 
 # Function to fetch and summarize articles from a given RSS URL
-def get_multiple_articles(rss_url, number_of_articles=2):
+def get_multiple_articles(rss_url, number_of_articles=1):
     articles_to_return = []
     feed = feedparser.parse(rss_url)
     articles = feed.entries[:number_of_articles]
@@ -50,10 +50,10 @@ def get_multiple_articles(rss_url, number_of_articles=2):
     return articles_to_return
 
 if __name__ == "__main__":
-    mongodb_uri = "URI"  # Replace with your actual MongoDB URI
+    mongodb_uri = "URI"
     db = get_database(mongodb_uri, 'newsData')
 
-    if db:
+    if db is not None: 
         main_collection = db['Main']
         rss_urls = [
             #Crypto
@@ -75,13 +75,8 @@ if __name__ == "__main__":
         for rss_url in rss_urls:
             articles = get_multiple_articles(rss_url)
             for article in articles:
-                # Insert the article data into MongoDB
                 insert_result = insert_article(main_collection, article)
                 if insert_result:
                     print(f"Inserted article with ID: {insert_result.inserted_id}")
                 else:
                     print("Failed to insert article.")
-    else:
-        print("Failed to connect to MongoDB.")
-
-
