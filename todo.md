@@ -1,7 +1,7 @@
 # To Do:
-1. Crontab Run Cloud
-2. Buy Domain - Setup Webhost on Vercel
-3. Front End
-4. Filter by Category
-5. Other Frontend Features
+1. Cron tab Remote
+2. Front End
+3. Filter by Category
+4. Donate Button
+5. New Frontend Features (Search?)
 6. Test and Iterate 

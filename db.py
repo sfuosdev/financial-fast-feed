@@ -4,6 +4,8 @@ import logging
 def connect_to_mongodb(uri):
     try:
         client = MongoClient(uri)
+        client.admin.command('ping')
+        print("Pinged your deployment. You successfully connected to MongoDB!")
         return client
     except Exception as e:
         logging.error(f"Failed to connect to MongoDB: {e}")
@@ -11,6 +13,8 @@ def connect_to_mongodb(uri):
 
 def get_database(uri, dbname):
     client = connect_to_mongodb(uri)
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
     if client is not None:
         return client[dbname]
     else:

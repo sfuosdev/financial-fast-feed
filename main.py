@@ -28,7 +28,7 @@ def fetch_full_article(article_url, max_paragraphs=3):
         return f"Error fetching full article: {e}"
 
 # Function to fetch and summarize articles from a given RSS URL
-def get_multiple_articles(rss_url, number_of_articles=1):
+def get_multiple_articles(rss_url, number_of_articles=2):
     articles_to_return = []
     feed = feedparser.parse(rss_url)
     articles = feed.entries[:number_of_articles]
@@ -50,7 +50,7 @@ def get_multiple_articles(rss_url, number_of_articles=1):
     return articles_to_return
 
 if __name__ == "__main__":
-    mongodb_uri = "URI"
+    mongodb_uri = "mongodb+srv://ethankcratchley:MongoSmoothie@financialnews.qwxu5oe.mongodb.net/?retryWrites=true&w=majority"
     db = get_database(mongodb_uri, 'newsData')
 
     if db is not None: 
