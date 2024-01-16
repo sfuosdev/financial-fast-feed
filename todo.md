@@ -1,7 +1,6 @@
 # To Do:
-1. Cron tab Remote
-2. Front End
-3. Filter by Category
-4. Donate Button
-5. New Frontend Features (Search?)
-6. Test and Iterate 
+1. Front End
+2. Filter by Category
+3. Donate Button
+4. New Frontend Features (Search?)
+5. Test and Iterate 
