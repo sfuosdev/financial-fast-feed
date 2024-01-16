@@ -1,11 +1,16 @@
 from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
 
+import os
+
 from db import get_database, insert_article
 
 from bs4 import BeautifulSoup
 import requests 
 import feedparser
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def fetch_full_article(article_url, max_paragraphs=3):
     """
@@ -50,7 +55,11 @@ def get_multiple_articles(rss_url, number_of_articles=2):
     return articles_to_return
 
 if __name__ == "__main__":
-    mongodb_uri = "mongodb+srv://ethankcratchley:MongoSmoothie@financialnews.qwxu5oe.mongodb.net/?retryWrites=true&w=majority"
+    # Retrieve the MongoDB URI from an environment variable
+    mongodb_uri = os.getenv('MONGODB_URI')
+    if not mongodb_uri:
+        raise ValueError("No MONGODB_URI set for environment")
+
     db = get_database(mongodb_uri, 'newsData')
 
     if db is not None: 

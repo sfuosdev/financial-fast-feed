@@ -1,16 +1,21 @@
 from openai import OpenAI
+import os
 
 def summarize_article(article_text):
     """
     Summarizes the given article text using OpenAI's GPT model.
     """
-    client = OpenAI(api_key="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")  # Replace 'YOUR_API_KEY' with your actual API key
+    # Retrieve the API key from an environment variable
+    openai_api_key = os.getenv('OPENAI_API_KEY')
+    if not openai_api_key:
+        raise ValueError("No OPENAI_API_KEY set for environment")
 
+    client = OpenAI(api_key=openai_api_key)
     try:
         response = client.completions.create(
-            model="gpt-3.5-turbo-instruct",  # or another model you prefer
+            model="gpt-3.5-turbo-instruct",  
             prompt=f"Summarize the given article in 20 words or less:\n\n{article_text}",
-            max_tokens = 3800  # Adjust based on your needs
+            max_tokens = 3800  
         )
         return response.choices[0].text.strip()
     except Exception as e:
