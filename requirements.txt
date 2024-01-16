@@ -1,0 +1,17 @@
+beautifulsoup4==4.12.2
+bs4==0.0.1
+dateparser==1.2.0
+DateTime==5.2
+feedparser==6.0.11
+gitdb==4.0.10
+GitPython==3.1.36
+gunicorn==21.2.0
+html5lib==1.1
+htmldate==1.6.1
+json5==0.9.14
+openai==1.6.1
+procfile==0.1.0
+pymongo==3.11.0
+python-dotenv==1.0.0
+requests==2.31.0
+trafilatura==1.6.4
