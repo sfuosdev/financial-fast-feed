@@ -2,13 +2,13 @@ from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
 
 import os
+from dotenv import load_dotenv
 
 from db import get_database, insert_article
 
 from bs4 import BeautifulSoup
 import requests 
 import feedparser
-from dotenv import load_dotenv
 
 load_dotenv()
 

@@ -1,0 +1,28 @@
+.feed-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 8px;
+    text-decoration: none;
+    color: black;
+    flex: 0 0 30%; /* Each item takes up roughly a third of the container's width */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px; /* Adjust height as needed */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .feed-item {
+      flex: 0 0 48%; /* Adjust for smaller screens - two items per row */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .feed-item {
+      flex: 0 0 100%; /* Adjust for mobile screens - one item per row */
+    }
+  }
+  
