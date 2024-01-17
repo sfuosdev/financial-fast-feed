@@ -1,6 +1,8 @@
 from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
 
+from flask import Flask, jsonify
+
 import os
 from dotenv import load_dotenv
 
@@ -11,6 +13,7 @@ import requests
 import feedparser
 
 load_dotenv()
+app = Flask(__name__)
 
 def fetch_full_article(article_url, max_paragraphs=3):
     """
@@ -53,6 +56,25 @@ def get_multiple_articles(rss_url, number_of_articles=2):
         articles_to_return.append(article_data)
 
     return articles_to_return
+
+@app.route('/get-articles', methods=['GET'])
+def get_articles():
+    db = get_database(os.getenv('MONGODB_URI'), 'newsData')
+    main_collection = db['Main']
+
+    # Assuming you have a timestamp or an ID to sort by, adjust accordingly
+    articles_cursor = main_collection.find().sort("date", -1).limit(10)  # Adjust limit as needed
+    articles = list(articles_cursor)
+
+    # Convert ObjectId to string because ObjectId is not JSON serializable
+    for article in articles:
+        article['_id'] = str(article['_id'])
+
+    return jsonify(articles)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)  # Heroku provides the port via env variable
 
 if __name__ == "__main__":
     # Retrieve the MongoDB URI from an environment variable

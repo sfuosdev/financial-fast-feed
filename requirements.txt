@@ -16,3 +16,4 @@ python-dotenv==1.0.0
 requests==2.31.0
 trafilatura==1.6.4
 dnspython==1.16.0
+Flask==2.0.1

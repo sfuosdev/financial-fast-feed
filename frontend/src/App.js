@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000'); // Adjust URL as needed
+        const response = await fetch('https://finance-news-cron-6972a9cbd9e1.herokuapp.com/');
         const data = await response.json();
         setFeedData(data);
       } catch (error) {

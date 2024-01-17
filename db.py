@@ -5,7 +5,6 @@ import os
 def connect_to_mongodb(uri):
     try:
         client = MongoClient(uri)
-        # The 'ping' command is cheap and does not require auth on MongoDB 3.0+
         client.admin.command('ping')
         logging.info("Successfully connected to MongoDB!")
         return client
