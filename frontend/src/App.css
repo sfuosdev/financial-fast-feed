@@ -1,12 +1,12 @@
 /* Main */
 .App {
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
   .dark-mode {
     background-color: #121212;
     color: white;
@@ -43,20 +43,25 @@
     right: 20px; /* Align to the right, 20px from the edge */
   }
   
-  /* Feed */
-
+/* Feed Container */
 .feed-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
+  grid-gap: 16px; /* Adjust the gap as needed */
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .feed-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
   }
-  
-  @media (max-width: 768px) {
-    .feed-container {
-      flex-direction: column;
-    }
+}
+
+@media (max-width: 480px) {
+  .feed-container {
+    grid-template-columns: 1fr; /* 1 column for mobile screens */
   }
+}
   
   /* Footer */
   .App-footer {

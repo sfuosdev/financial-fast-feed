@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import FeedItem from './FeedItem'; // Import the FeedItem component
+import FeedItem from './FeedItem'; 
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [feedData, setFeedData] = useState([]); // State for storing feed data
+  const [feedData, setFeedData] = useState([]); 
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
@@ -19,8 +19,11 @@ function App() {
       }
     };
 
-    fetchData();
-  }, []);
+  fetchData(); // Fetch immediately on mount
+  const intervalId = setInterval(fetchData, 60000); // Fetch every 60 seconds
+
+  return () => clearInterval(intervalId); // Clean up on unmount
+}, []);
 
   return (
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
@@ -34,7 +37,7 @@ function App() {
       <main className="feed-container">
         {feedData.map((item, index) => (
           <FeedItem
-            key={index} // Ideally use a unique ID from your data instead of index
+            key={index} 
             title={item.title}
             link={item.link}
             summary={item.summary}
