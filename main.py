@@ -7,7 +7,6 @@ from flask_cors import CORS
 from db import get_database
 
 load_dotenv()
-'''
 app = Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})  # This allows all origins for all routes
 
@@ -15,16 +14,6 @@ CORS(app, resources={r"*": {"origins": "*"}})  # This allows all origins for all
 def get_articles():
     db = get_database(os.getenv('MONGODB_URI'), 'newsData')
     main_collection = db['Main']
-'''
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
-if __name__ == "__main__":
-    app.run()
-
 
     # Fetch the latest articles; here we assume the latest articles are inserted last
     articles_cursor = main_collection.find().limit(22)  # Adjust limit as needed
