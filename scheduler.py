@@ -1,12 +1,10 @@
 import os
 import time
 import logging
-from main import get_database
 from rss_utils import get_multiple_articles
 from db import get_database, insert_article
 
-
-FETCH_INTERVAL = 28800
+FETCH_INTERVAL = 600
 
 def fetch_and_store_articles():
     db = get_database(os.getenv('MONGODB_URI'), 'newsData')
