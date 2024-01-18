@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import FeedItem from './FeedItem'; 
+import FeedItem from './FeedItem'; // Import the FeedItem component
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [feedData, setFeedData] = useState([]); 
+  const [feedData, setFeedData] = useState([]); // State for storing feed data
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://finance-news-cron-6972a9cbd9e1.herokuapp.com/');
+        const response = await fetch('http://127.0.0.1:5000'); // Adjust URL as needed
         const data = await response.json();
         setFeedData(data);
       } catch (error) {
@@ -19,11 +19,8 @@ function App() {
       }
     };
 
-  fetchData(); // Fetch immediately on mount
-  const intervalId = setInterval(fetchData, 60000); // Fetch every 60 seconds
-
-  return () => clearInterval(intervalId); // Clean up on unmount
-}, []);
+    fetchData();
+  }, []);
 
   return (
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
@@ -37,7 +34,7 @@ function App() {
       <main className="feed-container">
         {feedData.map((item, index) => (
           <FeedItem
-            key={index} 
+            key={index} // Ideally use a unique ID from your data instead of index
             title={item.title}
             link={item.link}
             summary={item.summary}
@@ -54,5 +51,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

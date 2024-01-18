@@ -2,33 +2,26 @@
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
+  margin: 8px;
   text-decoration: none;
   color: black;
+  flex: 0 0 30%; /* Each item takes up roughly a third of the container's width */
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ensures spacing within the card */
-  overflow: hidden; /* Keeps the content within the borders */
-  height: auto; /* Height will depend on the content */
+  justify-content: space-between;
+  height: 250px; /* Adjust height as needed */
 }
 
-.feed-item-content {
-  padding: 16px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feed-item {
+    flex: 0 0 48%; /* Adjust for smaller screens - two items per row */
+  }
 }
 
-.feed-title {
-  font-size: 1.2em; /* Adjust title size as needed */
-  margin-bottom: 8px;
+@media (max-width: 480px) {
+  .feed-item {
+    flex: 0 0 100%; /* Adjust for mobile screens - one item per row */
+  }
 }
-
-.feed-summary {
-  font-size: 0.9em; /* Adjust summary text size as needed */
-  color: #333;
-}
-
-.feed-meta {
-  font-size: 0.8em; /* Adjust meta info size as needed */
-  color: #666;
-  margin-bottom: 8px;
-}
-
-/* Add responsive adjustments if needed */

@@ -7,76 +7,70 @@
   justify-content: space-between;
 }
 
-  .dark-mode {
-    background-color: #121212;
-    color: white;
-  }
-  
-  /* Header*/
-  .App-header {
-    background-color: #282c34;
-    min-height: 80px;
-    display: flex;
-    justify-content: center; /* Center the items horizontally */
-    align-items: center;
-    padding: 0 20px;
-    color: white;
-    position: relative; /* Needed for absolute positioning of the toggle button */
-  }
-  
-  .App-header-title {
-    flex: 1;
-    text-align: center; /* Center the title text */
-    font-size: 2em; /* Adjust the size as needed */
-    font-weight: bold; /* Makes the font bolder */
-  }
-  
-  .dark-mode-toggle {
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    background-color: #61dafb;
-    color: #282c34;
-    border-radius: 5px;
-    font-size: 1em;
-    position: absolute; /* Absolute position relative to the header */
-    right: 20px; /* Align to the right, 20px from the edge */
-  }
-  
-/* Feed Container */
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+/* Header*/
+.App-header {
+  background-color: #282c34;
+  min-height: 80px;
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+  align-items: center;
+  padding: 0 20px;
+  color: white;
+  position: relative; /* Needed for absolute positioning of the toggle button */
+}
+
+.App-header-title {
+  flex: 1;
+  text-align: center; /* Center the title text */
+  font-size: 2em; /* Adjust the size as needed */
+  font-weight: bold; /* Makes the font bolder */
+}
+
+.dark-mode-toggle {
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  background-color: #61dafb;
+  color: #282c34;
+  border-radius: 5px;
+  font-size: 1em;
+  position: absolute; /* Absolute position relative to the header */
+  right: 20px; /* Align to the right, 20px from the edge */
+}
+
+/* Feed */
+
 .feed-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
-  grid-gap: 16px; /* Adjust the gap as needed */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   padding: 16px;
 }
 
 @media (max-width: 768px) {
   .feed-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+    flex-direction: column;
   }
 }
 
-@media (max-width: 480px) {
-  .feed-container {
-    grid-template-columns: 1fr; /* 1 column for mobile screens */
-  }
+/* Footer */
+.App-footer {
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
 }
-  
-  /* Footer */
-  .App-footer {
-    padding: 20px;
-    background-color: #282c34;
-    color: white;
-  }
-  
-  .App-footer a {
-    color: #fcfcfc;
-    text-decoration: none;
-    margin: 0 10px;
-  }
-  
-  .App-footer a:hover {
-    text-decoration: underline;
-  }
-  
+
+.App-footer a {
+  color: #fcfcfc;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.App-footer a:hover {
+  text-decoration: underline;
+}

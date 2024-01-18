@@ -1,31 +1,90 @@
-from flask import Flask, jsonify
+from summarize import summarize_article
 
 import os
 from dotenv import load_dotenv
-from flask_cors import CORS
 
-from db import get_database
+from db import get_database, insert_article
+
+from bs4 import BeautifulSoup
+import requests 
+import feedparser
 
 load_dotenv()
-app = Flask(__name__)
-CORS(app, resources={r"*": {"origins": "*"}})  # This allows all origins for all routes
 
-@app.route('/get-articles', methods=['GET'])
-def get_articles():
-    db = get_database(os.getenv('MONGODB_URI'), 'newsData')
-    main_collection = db['Main']
+def fetch_full_article(article_url, max_paragraphs=3):
+    """
+    Fetches and truncates the full article content from a given URL.
+    max_paragraphs: Maximum number of paragraphs to include in the summary.
+    """
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    }
+    try:
+        response = requests.get(article_url, headers=headers)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        article_body = soup.find_all(['p', 'h1', 'h2', 'h3'])
 
-    # Fetch the latest articles; here we assume the latest articles are inserted last
-    articles_cursor = main_collection.find().limit(22)  # Adjust limit as needed
-    articles = list(articles_cursor)
+        # Truncate the article to the specified number of paragraphs
+        truncated_article = ' '.join([para.get_text() for para in article_body[:max_paragraphs]])
+        return truncated_article
+    except Exception as e:
+        return f"Error fetching full article: {e}"
 
-    # Convert ObjectId to string because ObjectId is not JSON serializable
-    for article in articles:
-        article['_id'] = str(article['_id'])
+# Function to fetch and summarize articles from a given RSS URL
+def get_multiple_articles(rss_url, number_of_articles=2):
+    articles_to_return = []
+    feed = feedparser.parse(rss_url)
+    articles = feed.entries[:number_of_articles]
 
-    return jsonify(articles)
+    for item in articles:
+        full_article = fetch_full_article(item.link)
+        summary = summarize_article(full_article)
+        
+        article_data = {
+            "title": item.get("title", "No title available"),
+            "link": item.get("link", "No link available"),
+            "description": item.get("description", "No description available"),
+            "date": item.get("published", "No publication date available"),
+            "author": item.get("author", "No author available"),
+            "summary": summary
+        }
+        articles_to_return.append(article_data)
+
+    return articles_to_return
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)  # Heroku provides the port via env variable
+    # Retrieve the MongoDB URI from an environment variable
+    mongodb_uri = os.getenv('MONGODB_URI')
+    if not mongodb_uri:
+        raise ValueError("No MONGODB_URI set for environment")
 
+    db = get_database(mongodb_uri, 'newsData')
+
+    if db is not None: 
+        main_collection = db['Main']
+        rss_urls = [
+            #Crypto
+            'https://Blockchain.News/RSS/',
+            'https://bitcoinist.com/feed/',
+            'https://www.newsbtc.com/feed/',
+            # Stock Market Movements
+            'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
+            'https://seekingalpha.com/feed.xml',
+            'https://feeds.a.dj.com/rss/RSSMarketsMain.xml',
+            'https://www.frbsf.org/our-district/about/sf-fed-blog-rss-feed/',
+            # Economic Indicators
+            'https://tradingeconomics.com/canada/rss',
+            'https://tradingeconomics.com/united-states/rss',
+            'https://feeds.content.dowjones.io/public/rss/mw_topstories',
+            'https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentfinance&type=newsreleases&sort=publishedDate&orderBy=desc&publishedDate%3E=2020-08-09&pick=100&format=atom&atomtitle=Canada%20News%20Centre%20-%20Department%20of%20Finance%20Canada%20-%20News%20Releases'
+        ]
+
+        for rss_url in rss_urls:
+            articles = get_multiple_articles(rss_url)
+            for article in articles:
+                insert_result = insert_article(main_collection, article)
+                if insert_result:
+                    print(f"Inserted article with ID: {insert_result.inserted_id}")
+                else:
+                    print("Failed to insert article.")
