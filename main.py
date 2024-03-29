@@ -1,9 +1,9 @@
+from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
 
+from db import get_database, insert_article
 import os
 from dotenv import load_dotenv
-
-from db import get_database, insert_article
 
 from bs4 import BeautifulSoup
 import requests 
@@ -54,37 +54,34 @@ def get_multiple_articles(rss_url, number_of_articles=2):
     return articles_to_return
 
 if __name__ == "__main__":
-    # Retrieve the MongoDB URI from an environment variable
-    mongodb_uri = os.getenv('MONGODB_URI')
-    if not mongodb_uri:
-        raise ValueError("No MONGODB_URI set for environment")
+    db = get_database(os.getenv('MONGODB_URI'), 'newsData')
+    main_collection = db['Main']
+    rss_urls = [
+        #Crypto
+        'https://Blockchain.News/RSS/',
+        'https://bitcoinist.com/feed/',
+        'https://www.newsbtc.com/feed/',
+        # Stock Market Movements
+        'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
+        'https://seekingalpha.com/feed.xml',
+        'https://feeds.a.dj.com/rss/RSSMarketsMain.xml',
+        'https://www.frbsf.org/our-district/about/sf-fed-blog-rss-feed/',
+        # Economic Indicators
+        'https://tradingeconomics.com/canada/rss',
+        'https://tradingeconomics.com/united-states/rss',
+        'https://feeds.content.dowjones.io/public/rss/mw_topstories',
+        'https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentfinance&type=newsreleases&sort=publishedDate&orderBy=desc&publishedDate%3E=2020-08-09&pick=100&format=atom&atomtitle=Canada%20News%20Centre%20-%20Department%20of%20Finance%20Canada%20-%20News%20Releases'
+    ]
 
-    db = get_database(mongodb_uri, 'newsData')
+    for rss_url in rss_urls:
+        articles = get_multiple_articles(rss_url)
+        for article in articles:
+            # Insert the article data into MongoDB
+            insert_result = insert_article(main_collection, article)
+            if insert_result:
+                print(f"Inserted article with ID: {insert_result.inserted_id}")
+            else:
+                print("Failed to insert article.")
+else:
+    print("Failed to connect to MongoDB.")
 
-    if db is not None: 
-        main_collection = db['Main']
-        rss_urls = [
-            #Crypto
-            'https://Blockchain.News/RSS/',
-            'https://bitcoinist.com/feed/',
-            'https://www.newsbtc.com/feed/',
-            # Stock Market Movements
-            'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
-            'https://seekingalpha.com/feed.xml',
-            'https://feeds.a.dj.com/rss/RSSMarketsMain.xml',
-            'https://www.frbsf.org/our-district/about/sf-fed-blog-rss-feed/',
-            # Economic Indicators
-            'https://tradingeconomics.com/canada/rss',
-            'https://tradingeconomics.com/united-states/rss',
-            'https://feeds.content.dowjones.io/public/rss/mw_topstories',
-            'https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentfinance&type=newsreleases&sort=publishedDate&orderBy=desc&publishedDate%3E=2020-08-09&pick=100&format=atom&atomtitle=Canada%20News%20Centre%20-%20Department%20of%20Finance%20Canada%20-%20News%20Releases'
-        ]
-
-        for rss_url in rss_urls:
-            articles = get_multiple_articles(rss_url)
-            for article in articles:
-                insert_result = insert_article(main_collection, article)
-                if insert_result:
-                    print(f"Inserted article with ID: {insert_result.inserted_id}")
-                else:
-                    print("Failed to insert article.")
