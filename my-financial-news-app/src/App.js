@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header>
         Financial Fast Feed
-        {/* You can add a filter button here later */}
+        {/* Filter button */}
       </header>
       <div className="articles-container">
         <ArticleList />
@@ -17,3 +17,5 @@ function App() {
 }
 
 export default App;
+
+

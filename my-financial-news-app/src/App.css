@@ -6,8 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #121212; /* Dark background */
-  color: #ffffff; /* Light text */
+  background-color: #121212; 
+  color: #ffffff;
 }
 
 .App {
@@ -15,7 +15,7 @@ body {
 }
 
 header {
-  background-color: #1e1e1e; /* Dark grey header */
+  background-color: #1e1e1e;
   padding: 20px;
   font-size: 24px;
   color: white;
@@ -30,8 +30,8 @@ header {
 }
 
 .article-box {
-  width: 30%; /* Adjust based on preference and responsiveness */
-  background-color: #242424; /* Slightly lighter grey for articles */
+  width: 30%; 
+  background-color: #242424;
   color: white;
   padding: 20px;
   border-radius: 8px;
@@ -39,12 +39,12 @@ header {
 
 @media (max-width: 768px) {
   .article-box {
-    width: 45%; /* Adjust for smaller screens */
+    width: 45%; 
   }
 }
 
 @media (max-width: 480px) {
   .article-box {
-    width: 90%; /* Single column on very small screens */
+    width: 90%;
   }
 }

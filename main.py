@@ -14,18 +14,17 @@ from bs4 import BeautifulSoup
 load_dotenv('.env.backend')
 
 app = Flask(__name__)
-CORS(app, resources={r"*": {"origins": "*"}})
+CORS(app)
 
 @app.route('/articles', methods=['GET'])
 def get_articles_api():
     db_uri = os.getenv('MONGODB_URI')
     db_name = 'newsData'
-    client = MongoClient(db_uri, ssl_cert_reqs=ssl.CERT_NONE)  # Adjust as per your MongoDB connection setup
+    client = MongoClient(db_uri, ssl_cert_reqs=ssl.CERT_NONE) 
     db = client[db_name]
-    articles_collection = db.articles
+    articles_collection = db.main
 
-    # Fetch articles from the database
-    articles = list(articles_collection.find({}, {'_id': False}).limit(11))  # Adjust projection as needed
+    articles = list(articles_collection.find({}, {'_id': False}).limit(11))  
 
     return jsonify(articles)
 
@@ -43,13 +42,11 @@ def fetch_full_article(article_url, max_paragraphs=3):
         soup = BeautifulSoup(response.content, 'html.parser')
         article_body = soup.find_all(['p', 'h1', 'h2', 'h3'])
 
-        # Truncate the article to the specified number of paragraphs
         truncated_article = ' '.join([para.get_text() for para in article_body[:max_paragraphs]])
         return truncated_article
     except Exception as e:
         return f"Error fetching full article: {e}"
 
-# Function to fetch and summarize articles from a given RSS URL
 def get_multiple_articles(rss_url, number_of_articles=2):
     articles_to_return = []
     feed = feedparser.parse(rss_url)
@@ -101,7 +98,7 @@ def main():
                 print("Failed to insert article.")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
 '''
 if __name__ == "__main__":

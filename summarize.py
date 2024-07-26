@@ -2,10 +2,6 @@ from openai import OpenAI
 import os
 
 def summarize_article(article_text):
-    """
-    Summarizes the given article text using OpenAI's GPT model.
-    """
-    # Retrieve the API key from an environment variable
     openai_api_key = os.getenv('OPENAI_API_KEY')
     if not openai_api_key:
         raise ValueError("No OPENAI_API_KEY set for environment")

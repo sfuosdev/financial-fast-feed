@@ -2,7 +2,6 @@ import ssl
 import feedparser
 
 def parse_rss(rss_url):
-    # Create an SSL unverified context
     if hasattr(ssl, '_create_unverified_context'):
         ssl._create_default_https_context = ssl._create_unverified_context
 
