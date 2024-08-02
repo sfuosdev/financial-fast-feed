@@ -20,12 +20,11 @@ def get_database(uri, dbname):
         logging.error("Client is None, cannot get database.")
         return None
 
-def insert_article(db, article_data):
+def insert_article(collection, article):
     try:
-        articles_collection = db.articles
-        insert_result = articles_collection.insert_one(article_data)
-        logging.info(f"Article inserted with id: {insert_result.inserted_id}")
+        insert_result = collection.insert_one(article)
+        print(f"Inserted article with ID: {insert_result.inserted_id}")
         return insert_result
     except Exception as e:
-        logging.error(f"Error inserting article: {e}")
+        print(f"Error inserting article: {e}")
         return None
