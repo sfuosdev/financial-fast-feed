@@ -24,14 +24,16 @@ def index():
 def get_articles_api():
     db_uri = os.getenv('MONGODB_URI')
     db_name = 'newsData'
-    client = MongoClient(db_uri, ssl_cert_reqs=ssl.CERT_NONE) 
+    client = MongoClient(db_uri, ssl_cert_reqs=ssl.CERT_NONE)
     db = client[db_name]
-    articles_collection = db['Main']  # Ensure consistency here
+    articles_collection = db['Main']
 
-    articles = list(articles_collection.find({}, {'_id': False}).limit(11))
+    # Sort by '_id' in descending order to get the most recently inserted documents
+    articles = list(articles_collection.find({}, {'_id': False}).sort("_id", -1).limit(32))
     print("Fetched articles from MongoDB:", articles)
 
     return jsonify(articles)
+
 
 def fetch_full_article(article_url, max_paragraphs=3):
     headers = {
@@ -48,34 +50,39 @@ def fetch_full_article(article_url, max_paragraphs=3):
     except Exception as e:
         return f"Error fetching full article: {e}"
 
+from datetime import datetime
+
 def get_multiple_articles(rss_url, number_of_articles=2):
     articles_to_return = []
     feed = feedparser.parse(rss_url)
-    
+
     print(f"Fetching RSS feed from: {rss_url}")
     if not feed.entries:
         print(f"No articles found in RSS feed: {rss_url}")
         return articles_to_return
-    
+
     articles = feed.entries[:number_of_articles]
-    
+
     for item in articles:
         try:
             full_article = fetch_full_article(item.link)
             summary = summarize_article(full_article)
-            
+
+            # Use the published date or current time if not available
+            publication_date = item.get("published", datetime.utcnow().isoformat())
+
             article_data = {
                 "title": item.get("title", "No title available"),
                 "link": item.get("link", "No link available"),
                 "description": item.get("description", "No description available"),
-                "date": item.get("published", "No publication date available"),
+                "date": publication_date,
                 "author": item.get("author", "No author available"),
                 "summary": summary
             }
             articles_to_return.append(article_data)
         except Exception as e:
             print(f"Error processing article: {item.get('title', 'No title')} - {e}")
-    
+
     return articles_to_return
 
 def main():

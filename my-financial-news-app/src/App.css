@@ -1,58 +1,149 @@
-/* App.css */
-
 body {
+  background-color: #2b2b2b;
+  color: #e0e0e0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-}
-
-.App {
-  text-align: center;
-}
-
-header {
-  background-color: #007BFF;
-  color: white;
-  padding: 1rem;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-}
-
-.articles-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+}
+
+header, footer {
+  width: 100vw; /* Full viewport width */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: linear-gradient(90deg, #1c1c1c, #333);
+  box-sizing: border-box;
+}
+
+header {
+  padding: 20px 0 20px 0; /* Only padding on top */
+  font-size: 2.5em;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+  padding: 0 0 10px 0; /* Only padding on bottom */
+  font-size: 1em;
+  color: #ffffff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Set a fixed height for the footer */
+  position: relative; /* Ensure absolute elements are positioned relative to the footer */
+}
+
+footer a {
+  color: #aaaaaa; /* Grayish color for the links */
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+footer a:hover {
+  color: #ffffff; /* Lighter color on hover */
+  background-color: #444;
+  border: 1px solid #555;
+}
+
+footer .left {
+  position: absolute;
+  left: 20px;
+}
+
+footer .center {
+  position: absolute;
+  text-align: center;
+}
+
+footer .middle {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Center the element horizontally */
+}
+
+footer .middle a {
+  text-decoration: none;
+  color: #66b2ff;
+}
+
+footer .middle a:hover {
+  text-decoration: underline;
+}
+
+.App {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.articles-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(385px, 1fr));
+  gap: 20px; /* Padding between articles */
+  padding: 20px 0; /* Padding between articles and container edges */
+  box-sizing: border-box;
 }
 
 .article-box {
-  background-color: white;
-  padding: 1.5rem;
-  margin: 1rem 0;
+  background-color: #333;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 600px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  min-height: 300px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
 }
 
 .article-box h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-  color: #333;
+  color: #cccccc;
+  margin-bottom: 10px;
 }
 
 .article-box p {
-  margin: 0.5rem 0;
-  color: #666;
+  color: #c2c2c2;
+  margin-bottom: 10px;
+}
+
+.article-box p.author {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.article-box .date {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 0.9em;
+  color: #aaaaaa;
 }
 
 .article-box a {
-  color: #007BFF;
+  margin-top: auto;
+  color: #66b2ff;
   text-decoration: none;
-  font-weight: bold;
 }
 
 .article-box a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .articles-container {
+    grid-template-columns: 1fr;
+  }
 }
