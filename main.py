@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask import Flask, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 import os
@@ -13,12 +14,16 @@ from bs4 import BeautifulSoup
 
 load_dotenv('.env')
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="my-financial-news-app/build")
 CORS(app)
 
-@app.route('/')
-def index():
-    return "Welcome to the Financial Fast Feed API. Go to /articles to see the articles."
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/articles', methods=['GET'])
 def get_articles_api():
