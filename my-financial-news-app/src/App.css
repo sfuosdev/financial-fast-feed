@@ -147,3 +147,67 @@ footer .middle a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.filter-container {
+  text-align: left;
+  margin: 20px;
+  position: absolute;
+  top: 20px; /* Keeps the filter container near the top */
+  left: 20px;
+}
+
+.filter-button {
+  background-color: #444;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #555;
+}
+
+.dropdown-menu {
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 10px;
+  position: absolute;
+  top: 100%; /* Position below the filter button */
+  left: 0; /* Align to the left */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  min-width: 250px; /* Set a minimum width for the dropdown menu */
+}
+
+.dropdown-menu label {
+  display: block;
+  color: #e0e0e0;
+  margin: 5px 0;
+}
+
+.dropdown-menu input {
+  margin-right: 10px;
+}
+
+.articles-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(385px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  box-sizing: border-box;
+  min-height: 300px; /* Ensure minimum height to avoid pushing the filter button */
+}
+
+.no-articles {
+  min-height: 300px; /* Ensure minimum height to avoid pushing the filter button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e0e0e0;
+  padding: 20px; /* Add padding to the "No articles available" message */
+}

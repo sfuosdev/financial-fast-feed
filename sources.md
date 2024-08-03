@@ -1,6 +1,6 @@
 # RSS Feeds:
 
-## Categories: Total 11
+## Categories: Total 17
 
 # Crypto
 'https://Blockchain.News/RSS/',
@@ -14,7 +14,6 @@
 'https://seekingalpha.com/feed.xml',
 'https://feeds.a.dj.com/rss/RSSMarketsMain.xml',
 'https://www.frbsf.org/our-district/about/sf-fed-blog-rss-feed/',
-'https://www.nasdaq.com/feed/nasdaq-original/rss.xml',
 'https://seekingalpha.com/feed.xml',
 'https://fortune.com/feed/fortune-feeds/?id=3230629',
 'https://investorempires.com/feed/',
