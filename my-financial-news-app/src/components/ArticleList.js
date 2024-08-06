@@ -7,7 +7,7 @@ function ArticleList({ selectedSources }) {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch('http://localhost:5000/articles');
+        const response = await fetch('http://localhost:5001/articles');
         if (response.ok) {
           const data = await response.json();
           setArticles(data);
