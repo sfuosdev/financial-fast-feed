@@ -132,4 +132,5 @@ def main():
 
 if __name__ == "__main__":
     main()  # Call main() to fetch and insert articles
-    app.run(debug=False)
+    app.run(host='0.0.0.0', port=5001, debug=False)  # Running Flask on port 5001
+
