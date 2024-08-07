@@ -10,7 +10,7 @@ body {
 }
 
 header, footer {
-  width: 100vw; /* Full viewport width */
+  width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
@@ -21,7 +21,7 @@ header, footer {
 }
 
 header {
-  padding: 20px 0 20px 0; /* Only padding on top */
+  padding: 20px 0;
   font-size: 2.5em;
   color: #ffffff;
   text-align: center;
@@ -29,46 +29,41 @@ header {
 }
 
 footer {
-  padding: 0 0 10px 0; /* Only padding on bottom */
+  padding: 0 0 10px 0;
   font-size: 1em;
   color: #ffffff;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
   display: flex;
-  justify-content: space-between; /* Changed to space-between to distribute items evenly */
+  justify-content: space-between;
   align-items: center;
-  height: 60px; /* Set a fixed height for the footer */
-  position: relative; /* Ensure absolute elements are positioned relative to the footer */
+  height: 60px;
+  position: relative;
 }
 
 footer a {
-  color: #aaaaaa; /* Grayish color for the links */
-  text-decoration: none; /* Remove the underline */  
+  color: #aaaaaa;
+  text-decoration: none;
   padding: 5px 10px;
   border-radius: 4px;
   transition: color 0.3s, background-color 0.3s;
-  cursor: pointer; /* Ensures the links are clickable */
+  cursor: pointer;
 }
 
 footer a:hover {
-  color: #ffffff; /* Lighter color on hover */
+  color: #ffffff;
   background-color: #444;
   border: 1px solid #555;
 }
 
 footer .left {
-  position: relative; /* Changed from absolute to relative */
   padding-left: 10px;
-}
-
-footer .center {
-  position: relative; /* Changed from absolute to relative */
 }
 
 footer .middle {
   text-align: center;
   position: absolute;
   left: 50%;
-  transform: translateX(-50%); /* Center the element horizontally */
+  transform: translateX(-50%);
 }
 
 footer .middle a:hover {
@@ -78,14 +73,15 @@ footer .middle a:hover {
 .App {
   width: 100%;
   max-width: 1200px;
+  padding: 20px;
   box-sizing: border-box;
 }
 
 .articles-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(385px, 1fr));
-  gap: 20px; /* Padding between articles */
-  padding: 20px 0; /* Padding between articles and container edges */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px 0;
   box-sizing: border-box;
 }
 
@@ -94,7 +90,6 @@ footer .middle a:hover {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  min-height: 300px;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -136,65 +131,36 @@ footer .middle a:hover {
   text-decoration: underline;
 }
 
+/* Mobile responsiveness */
 @media (max-width: 768px) {
+  header {
+    font-size: 1.8em;
+  }
+
   .articles-container {
     grid-template-columns: 1fr;
+    padding: 10px;
   }
-}
 
-.filter-container {
-  text-align: left;
-  margin: 20px;
-  position: absolute;
-  top: 20px; /* Keeps the filter container near the top */
-  left: 20px;
-}
+  .filter-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    left: 0;
+    top: 0;
+  }
 
-.filter-button {
-  background-color: #444;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 1em;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
+  footer {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 0;
+  }
 
-.filter-button:hover {
-  background-color: #555;
-}
-
-.dropdown-menu {
-  background-color: #333;
-  border: 1px solid #444;
-  border-radius: 8px;
-  padding: 10px;
-  position: absolute;
-  top: 100%; /* Position below the filter button */
-  left: 0; /* Align to the left */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  min-width: 250px; /* Set a minimum width for the dropdown menu */
-}
-
-.dropdown-menu label {
-  display: block;
-  color: #e0e0e0;
-  margin: 5px 0;
-}
-
-.dropdown-menu input {
-  margin-right: 10px;
-}
-
-.articles-container {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(385px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
-  box-sizing: border-box;
-  min-height: 300px; /* Ensure minimum height to avoid pushing the filter button */
+  footer .middle {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+  }
 }
 
 .no-articles {
@@ -203,13 +169,11 @@ footer .middle a:hover {
   justify-content: center;
   color: #e0e0e0;
   padding: 20px;
-  margin: 0 auto; /* Center horizontally */
+  margin: 0 auto;
   width: 100%;
-  height: 100%; /* Ensure it takes the full height of the container */
-  min-height: 300px; /* Ensure a minimum height */
-  grid-column: span 3; /* Make the message span across all columns */
+  height: 100%;
+  min-height: 300px;
+  grid-column: span 3;
   text-align: center;
-  box-sizing: border-box; /* Include padding in the height */
+  box-sizing: border-box;
 }
-
-
