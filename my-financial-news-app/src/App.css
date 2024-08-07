@@ -185,11 +185,13 @@ footer .middle a:hover {
 }
 
 .filter-container {
-  text-align: left;
-  margin: 20px;
-  position: absolute;
-  top: 20px; /* Keeps the filter container near the top */
-  left: 20px;
+  text-align: center; /* Centered on mobile */
+  margin: 20px auto; /* Centered horizontally and with spacing */
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it's above other elements */
 }
 
 .filter-button {
@@ -201,6 +203,7 @@ footer .middle a:hover {
   font-size: 1em;
   border-radius: 4px;
   transition: background-color 0.3s;
+  width: auto; /* Adjust button width */
 }
 
 .filter-button:hover {
@@ -208,25 +211,22 @@ footer .middle a:hover {
 }
 
 .dropdown-menu {
-  display: block;
+  display: none; /* Initially hidden */
   background-color: #333;
   border: 1px solid #444;
   border-radius: 8px;
   padding: 10px;
   position: absolute;
   top: 100%; /* Position below the filter button */
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Center the dropdown */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   min-width: 250px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .dropdown-menu.show {
-  visibility: visible;
-  opacity: 1;
+  display: block; /* Show dropdown when the menu is active */
 }
 
 .dropdown-menu label {
