@@ -11,8 +11,8 @@ def summarize_article(article_text):
     try:
         response = client.completions.create(
             model="gpt-3.5-turbo-instruct",  
-            prompt=f"Summarize the key information of this article in 25 words or less: {article_text}",
-            max_tokens=3000  
+            prompt=f"Summarize the key information of this article in 25 words or less: \n{article_text}",
+            max_tokens=3800  
         )
         return response.choices[0].text.strip()
     except Exception as e:
