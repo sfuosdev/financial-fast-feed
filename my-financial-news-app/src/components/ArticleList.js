@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function ArticleList({ selectedSources }) {
+function ArticleList({ selectedSources = [] }) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -8,7 +8,7 @@ function ArticleList({ selectedSources }) {
     const fetchArticles = async () => {
       try {
         const response = await fetch('https://my-backend-service-ulh9.onrender.com/articles'); // Update this line with your actual backend URL
-      if (response.ok) {
+        if (response.ok) {
           const data = await response.json();
           setArticles(data);
         } else {
