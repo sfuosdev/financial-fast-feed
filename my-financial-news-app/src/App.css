@@ -141,8 +141,8 @@ footer .middle a:hover {
     width: 100%;
     text-align: center;
     margin-top: 10px;
-    left: 0;
-    transform: none;
+    left: 50%;
+    transform: translateX(-50%);
     top: 0;
     position: relative;
     z-index: 1000; 
@@ -160,6 +160,7 @@ footer .middle a:hover {
     transition: background-color 0.3s;
     z-index: 1000;
     margin: 0 auto;
+    position: relative; /* Ensure it's positioned relative to the container */
   }
 
   .filter-button:hover {
