@@ -44,20 +44,18 @@ function App() {
         <button onClick={toggleDropdown} className="filter-button">
           Filter by Source
         </button>
-        {showDropdown && (
-          <div className="dropdown-menu">
-            {availableSources.map((source) => (
-              <label key={source}>
-                <input
-                  type="checkbox"
-                  checked={selectedSources.includes(source)}
-                  onChange={() => handleSourceChange(source)}
-                />
-                {source}
-              </label>
-            ))}
-          </div>
-        )}
+        <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
+          {availableSources.map((source) => (
+            <label key={source}>
+              <input
+                type="checkbox"
+                checked={selectedSources.includes(source)}
+                onChange={() => handleSourceChange(source)}
+              />
+              {source}
+            </label>
+          ))}
+        </div>
       </div>
       <div className="articles-container">
         <ArticleList selectedSources={selectedSources || []} />

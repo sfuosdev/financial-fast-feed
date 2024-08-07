@@ -137,6 +137,16 @@ footer .middle a:hover {
     font-size: 1.8em;
   }
 
+  .filter-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    position: relative;
+  }
+  
   .articles-container {
     grid-template-columns: 1fr;
     padding: 10px;
@@ -179,7 +189,7 @@ footer .middle a:hover {
 }
 
 .dropdown-menu {
-  display: none;
+  display: block;
   background-color: #333;
   border: 1px solid #444;
   border-radius: 8px;
@@ -190,6 +200,14 @@ footer .middle a:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   min-width: 250px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dropdown-menu.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 .dropdown-menu label {
