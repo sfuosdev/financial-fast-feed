@@ -29,7 +29,7 @@ def serve(path):
 def get_articles_api():
     db_uri = os.getenv('MONGODB_URI')
     db_name = 'newsData'
-    client = MongoClient(db_uri, ssl_cert_reqs=ssl.CERT_NONE)
+    client = MongoClient(db_uri, tlsAllowInvalidCertificates=True)
     db = client[db_name]
     articles_collection = db['Main']
 
