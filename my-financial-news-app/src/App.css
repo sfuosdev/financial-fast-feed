@@ -156,8 +156,11 @@ footer .middle a:hover {
 }
 
 .filter-container {
-  margin-bottom: 20px;
-  position: relative;
+  text-align: left;
+  margin: 20px;
+  position: absolute;
+  top: 20px; /* Keeps the filter container near the top */
+  left: 20px;
 }
 
 .filter-button {
@@ -169,7 +172,6 @@ footer .middle a:hover {
   font-size: 1em;
   border-radius: 4px;
   transition: background-color 0.3s;
-  z-index: 1;
 }
 
 .filter-button:hover {
@@ -183,7 +185,7 @@ footer .middle a:hover {
   border-radius: 8px;
   padding: 10px;
   position: absolute;
-  top: 110%; /* Position below the filter button */
+  top: 100%; /* Position below the filter button */
   left: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1000;
@@ -198,11 +200,6 @@ footer .middle a:hover {
 
 .dropdown-menu input {
   margin-right: 10px;
-}
-
-/* Show dropdown when filter button is active */
-.filter-container.active .dropdown-menu {
-  display: block;
 }
 
 .no-articles {
