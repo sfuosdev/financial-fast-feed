@@ -145,8 +145,27 @@ footer .middle a:hover {
     transform: translateX(-50%);
     top: 0;
     position: relative;
+    z-index: 1000; /* Ensure it's above other elements */
   }
-  
+
+  .filter-button {
+    display: inline-block;
+    width: auto; /* Ensure the button adjusts to its content */
+    padding: 10px 20px;
+    background-color: #444;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    z-index: 1000; /* Ensure the button is on top */
+  }
+
+  .filter-button:hover {
+    background-color: #555;
+  }
+
   .articles-container {
     grid-template-columns: 1fr;
     padding: 10px;
