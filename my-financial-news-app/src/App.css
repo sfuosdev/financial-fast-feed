@@ -142,29 +142,6 @@ footer .middle a:hover {
     padding: 10px;
   }
 
-  .filter-container {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    left: 0;
-    top: 0;
-  }
-
-  .filter-button {
-    background-color: #444;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1em;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-
-  .filter-button:hover {
-    background-color: #555;
-  }
-
   footer {
     flex-direction: column;
     height: auto;
@@ -178,17 +155,39 @@ footer .middle a:hover {
   }
 }
 
+.filter-container {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.filter-button {
+  background-color: #444;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  z-index: 1;
+}
+
+.filter-button:hover {
+  background-color: #555;
+}
+
 .dropdown-menu {
+  display: none;
   background-color: #333;
   border: 1px solid #444;
   border-radius: 8px;
   padding: 10px;
   position: absolute;
-  top: 100%; /* Position below the filter button */
-  left: 0; /* Align to the left */
+  top: 110%; /* Position below the filter button */
+  left: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  min-width: 250px; /* Set a minimum width for the dropdown menu */
+  min-width: 250px;
 }
 
 .dropdown-menu label {
@@ -199,6 +198,11 @@ footer .middle a:hover {
 
 .dropdown-menu input {
   margin-right: 10px;
+}
+
+/* Show dropdown when filter button is active */
+.filter-container.active .dropdown-menu {
+  display: block;
 }
 
 .no-articles {
