@@ -11,6 +11,7 @@ from summarize import summarize_article
 from db import get_database, insert_article
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 load_dotenv('.env')
 
@@ -55,7 +56,6 @@ def fetch_full_article(article_url, max_paragraphs=3):
     except Exception as e:
         return f"Error fetching full article: {e}"
 
-from datetime import datetime
 
 def get_multiple_articles(rss_url, number_of_articles=2):
     articles_to_return = []
