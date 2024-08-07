@@ -193,11 +193,11 @@ footer .middle a:hover {
     width: 100%;
     text-align: center;
     margin-top: 10px;
-    transform: translateX(-50%);
+    left: 0; 
+    transform: none; 
     top: 0;
     position: relative;
     z-index: 1000;
-    left: 50%;
   }
 
   .filter-button {
@@ -218,13 +218,13 @@ footer .middle a:hover {
   }
 
   .dropdown-menu {
-    display: none; /* Initially hidden */
+    display: none; 
     background-color: #333;
     border: 1px solid #444;
     border-radius: 8px;
     padding: 10px;
     position: absolute;
-    top: 100%; /* Position below the filter button */
+    top: 100%; 
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -233,7 +233,7 @@ footer .middle a:hover {
   }
 
   .dropdown-menu.show {
-    display: block; /* Show dropdown when active */
+    display: block; 
   }
 
   .articles-container {
