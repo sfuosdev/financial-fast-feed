@@ -1,81 +1,55 @@
-import React, { useState } from 'react';
-import ArticleList from './components/ArticleList';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
-function App() {
-  const [selectedSources, setSelectedSources] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+function ArticleList({ selectedSources = [] }) {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const availableSources = [
-    'blockchain.news',
-    'bitcoinist.com',
-    'newsbtc.com',
-    'cointelegraph.com',
-    'bitcoinmagazine.com',
-    'reuters.com',
-    'seekingalpha.com',
-    'wsj.com', // Wall Street Journal
-    'fortune.com',
-    'investorempires.com',
-    'ft.com', // Financial Times
-    'tradingeconomics.com',
-    'marketwatch.com',
-    'canada.ca' // Canada News Centre
-  ];
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch('https://my-backend-service-ulh9.onrender.com/articles'); // Update this line with your actual backend URL
+        if (response.ok) {
+          const data = await response.json();
+          setArticles(data);
+        } else {
+          throw new Error('Network response was not ok.');
+        }
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
+    fetchArticles();
+  }, []);
 
-  const handleSourceChange = (source) => {
-    setSelectedSources((prevSelectedSources) =>
-      prevSelectedSources.includes(source)
-        ? prevSelectedSources.filter((s) => s !== source)
-        : [...prevSelectedSources, source]
-    );
-  };
+  const filteredArticles = articles.filter(article => {
+    if (selectedSources.length === 0) return true;
+    return selectedSources.some(source => article.link.includes(source));
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (filteredArticles.length === 0) {
+    return <div className="no-articles">No articles available</div>;
+  }
 
   return (
-    <div className="App">
-      <header>
-        Financial Fast Feed
-      </header>
-      <div className={`filter-container ${showDropdown ? 'active' : ''}`}>
-        <button onClick={toggleDropdown} className="filter-button">
-          Filter by Source
-        </button>
-        {showDropdown && (
-          <div className="dropdown-menu">
-            {availableSources.map((source) => (
-              <label key={source}>
-                <input
-                  type="checkbox"
-                  checked={selectedSources.includes(source)}
-                  onChange={() => handleSourceChange(source)}
-                />
-                {source}
-              </label>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="articles-container">
-        <ArticleList selectedSources={selectedSources || []} />
-      </div>
-      <footer>
-        <div className="left">
-          <a href="https://github.com/EthanCratchley/finance-news" target="_blank" rel="noopener noreferrer">GitHub</a> | 
-          <a href="mailto:ethankcratchley@gmail.com"> Contact</a> | 
-          <a href="https://buymeacoffee.com/ethancratchley" target="_blank" rel="noopener noreferrer"> Donate</a>
+    <div className="articles-container">
+      {filteredArticles.slice(0, 32).map((article, index) => (
+        <div key={index} className="article-box">
+          <h3>{article.title}</h3>
+          <p>{article.summary}</p>
+          <p className="author">{article.author}</p>
+          <p className="date">{new Date(article.date).toLocaleDateString()}</p>
+          <a href={article.link} target="_blank" rel="noopener noreferrer">Read more</a>
         </div>
-        <div className="middle">
-          <a href="https://www.ethancratchley.com" target="_blank" rel="noopener noreferrer">
-            a Ethan Cratchley production
-          </a>
-        </div>
-      </footer>
+      ))}
     </div>
   );
 }
 
-export default App;
+export default ArticleList;
