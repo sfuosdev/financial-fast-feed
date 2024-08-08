@@ -15,7 +15,6 @@ function App() {
     'seekingalpha.com',
     'fortune.com',
     'tradingeconomics.com',
-    'canada.ca' // Canada News Centre
   ];
 
   const toggleDropdown = () => {
