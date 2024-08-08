@@ -29,7 +29,7 @@ def get_post_insights(title, fullText, model="gpt-3.5-turbo"):
 
     # Adjusted prompt for financial articles
     prompt = (
-        f"Create a concise summary for a financial article based on the title and full text provided. "
+        f"Create a concise summary for a financial article based on the title and article text provided. "
         f"Respond only with the summary.\n\n"
         f"Title: '{title}'\n\nFull Text: '{fullText}'"
     )

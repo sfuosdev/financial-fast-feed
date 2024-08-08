@@ -11,15 +11,10 @@ function App() {
     'bitcoinist.com',
     'newsbtc.com',
     'cointelegraph.com',
-    'bitcoinmagazine.com',
     'reuters.com',
     'seekingalpha.com',
-    'wsj.com', // Wall Street Journal
     'fortune.com',
-    'investorempires.com',
-    'ft.com', // Financial Times
     'tradingeconomics.com',
-    'marketwatch.com',
     'canada.ca' // Canada News Centre
   ];
 

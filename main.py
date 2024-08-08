@@ -101,17 +101,13 @@ def main():
         'https://bitcoinist.com/feed/',
         'https://www.newsbtc.com/feed/',
         'https://cointelegraph.com/rss',
-        'https://bitcoinmagazine.com/.rss/full/',
 
         # Stock Market Movements
         'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
         'https://seekingalpha.com/feed.xml',
         'https://feeds.a.dj.com/rss/RSSMarketsMain.xml',
         'https://www.frbsf.org/our-district/about/sf-fed-blog-rss-feed/',
-        'https://seekingalpha.com/feed.xml',
         'https://fortune.com/feed/fortune-feeds/?id=3230629',
-        'https://investorempires.com/feed/',
-        'https://www.ft.com/rss/home',
 
         # Economic Indicators
         'https://tradingeconomics.com/canada/rss',
