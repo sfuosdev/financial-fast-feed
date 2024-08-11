@@ -160,7 +160,7 @@ footer .middle a:hover {
     transition: background-color 0.3s;
     z-index: 1000;
     margin: 0 auto;
-    position: relative; /* Ensure it's positioned relative to the container */
+    position: relative; 
   }
 
   .filter-button:hover {

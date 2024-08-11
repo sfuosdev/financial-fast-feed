@@ -7,7 +7,7 @@ function ArticleList({ selectedSources = [] }) {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch('https://my-backend-service-ulh9.onrender.com/articles'); // Update this line with your actual backend URL
+        const response = await fetch('https://my-backend-service-ulh9.onrender.com/articles');
         if (response.ok) {
           const data = await response.json();
           setArticles(data);

@@ -125,7 +125,4 @@ def main():
             print(f"No articles fetched from {rss_url}")
 
 if __name__ == "__main__":
-    main()  # Call main() to fetch and insert articles
-
-    # Instead of running the Flask app, we terminate after main() completes
-    # app.run(host='0.0.0.0', port=5001, debug=False)  # This line is removed to avoid running Flask indefinitely
+    main()  
