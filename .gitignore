@@ -1,3 +1,4 @@
 .env
 cronjob.log
 .vercel
+.DS_Store
