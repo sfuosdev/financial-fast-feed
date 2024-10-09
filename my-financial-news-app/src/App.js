@@ -62,7 +62,7 @@ function App() {
         </div>
         <div className="middle">
           <a href="https://www.ethancratchley.com" target="_blank" rel="noopener noreferrer">
-            a Ethan Cratchley production
+            Created by Ethan Cratchley and SFU OS Development
           </a>
         </div>
       </footer>
