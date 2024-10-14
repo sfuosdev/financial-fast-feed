@@ -75,7 +75,6 @@ def get_multiple_articles(rss_url, number_of_articles=2):
             full_article = fetch_full_article(item.link)
             summary = summarize_article(full_article)
 
-            # Use the published date or current time if not available
             publication_date = item.get("published", datetime.utcnow().isoformat())
 
             article_data = {
