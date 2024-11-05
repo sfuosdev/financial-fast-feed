@@ -5,10 +5,10 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import feedparser
-from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
 from db import get_database, insert_article
 import requests
+from server.rss.fetchRSS import fetch_full_article
 from bs4 import BeautifulSoup
 from datetime import datetime
 
