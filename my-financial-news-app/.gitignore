@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 .vercel
 
-todo.md
+__pycache__
