@@ -1,16 +1,16 @@
-from openai import OpenAI
 import os
+import requests
+import feedparser
+from openai import OpenAI
+from bs4 import BeautifulSoup
+from datetime import datetime
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
-import feedparser
-from summarize import summarize_article
-from db import get_database, insert_article
-import requests
+from server.summarize import summarize_article
+from server.db import get_database, insert_article
 from server.rss.fetchRSS import fetch_full_article
-from bs4 import BeautifulSoup
-from datetime import datetime
 
 load_dotenv('.env')
 
