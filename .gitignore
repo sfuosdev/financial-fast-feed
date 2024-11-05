@@ -1,4 +1,4 @@
 .DS_Store
-rss/__pycache__
+__pycache__
 sources.md
 .env
