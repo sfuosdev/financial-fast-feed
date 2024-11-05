@@ -1,5 +1,5 @@
 # Financial Fast Feed
-![Financial Fast Feed](/my-financial-news-app/public/staple.jpg)
+![Financial Fast Feed](/client/public/staple.jpg)
 
 Financial Fast Feed displays and summmarizes RSS Feeds with GPT-3.5 from 9 different financial news sources. Sources incude Crypto, Economic, and Stock Market news.
 
