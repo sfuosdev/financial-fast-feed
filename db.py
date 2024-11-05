@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import logging
-import os
 
+# Function to connect to MongoDB
 def connect_to_mongodb(uri):
     try:
         client = MongoClient(uri)
@@ -12,6 +12,7 @@ def connect_to_mongodb(uri):
         logging.error(f"Failed to connect to MongoDB: {e}")
         return None
 
+# Function to retrieve a specific database by name
 def get_database(uri, dbname):
     client = connect_to_mongodb(uri)
     if client is not None:
@@ -20,6 +21,7 @@ def get_database(uri, dbname):
         logging.error("Client is None, cannot get database.")
         return None
 
+# Function to insert an article document into a collection
 def insert_article(collection, article):
     try:
         insert_result = collection.insert_one(article)

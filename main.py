@@ -1,12 +1,9 @@
-import logging
 from openai import OpenAI
 import os
-import json
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
-import ssl
 import feedparser
 from rss.fetchRSS import fetch_full_article
 from summarize import summarize_article
@@ -17,9 +14,11 @@ from datetime import datetime
 
 load_dotenv('.env')
 
+# Initialize Flask app with CORS enabled
 app = Flask(__name__, static_folder="my-financial-news-app/build")
 CORS(app)
 
+# Serve static files for the React app
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path):
@@ -28,6 +27,7 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
+# API route to fetch articles from MongoDB
 @app.route('/articles', methods=['GET'])
 def get_articles_api():
     db_uri = os.getenv('MONGODB_URI')
@@ -36,13 +36,14 @@ def get_articles_api():
     db = client[db_name]
     articles_collection = db['Main']
 
+    # Fetch the 32 most recent articles from MongoDB
     # Sort by '_id' in descending order to get the most recently inserted documents
     articles = list(articles_collection.find({}, {'_id': False}).sort("_id", -1).limit(32))
     print("Fetched articles from MongoDB:", articles)
 
     return jsonify(articles)
 
-
+# Function to fetch and truncate article text from a given URL
 def fetch_full_article(article_url, max_paragraphs=3):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
@@ -58,7 +59,7 @@ def fetch_full_article(article_url, max_paragraphs=3):
     except Exception as e:
         return f"Error fetching full article: {e}"
 
-
+# Function to retrieve multiple articles from an RSS feed
 def get_multiple_articles(rss_url, number_of_articles=2):
     articles_to_return = []
     feed = feedparser.parse(rss_url)
@@ -91,6 +92,7 @@ def get_multiple_articles(rss_url, number_of_articles=2):
 
     return articles_to_return
 
+# Main function to fetch and insert articles into the database
 def main():
     db = get_database(os.getenv('MONGODB_URI'), 'newsData')
     main_collection = db['Main']
@@ -115,6 +117,7 @@ def main():
         articles = get_multiple_articles(rss_url)
         if articles:
             for article in articles:
+                # Insert each article into MongoDB
                 insert_result = insert_article(main_collection, article)
                 if insert_result:
                     print(f"Inserted article with ID: {insert_result.inserted_id}")

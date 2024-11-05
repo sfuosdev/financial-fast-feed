@@ -3,9 +3,10 @@ import ArticleList from './components/ArticleList';
 import './App.css';
 
 function App() {
-  const [selectedSources, setSelectedSources] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedSources, setSelectedSources] = useState([]); // Stores selected sources for filtering
+  const [showDropdown, setShowDropdown] = useState(false); // Manages visibility of the filter dropdown
 
+  // List of available sources for filtering articles
   const availableSources = [
     'blockchain.news',
     'bitcoinist.com',
@@ -21,6 +22,7 @@ function App() {
     setShowDropdown(!showDropdown);
   };
 
+  // Add or remove a source from selected sources when the checkbox is toggled
   const handleSourceChange = (source) => {
     setSelectedSources((prevSelectedSources) =>
       prevSelectedSources.includes(source)

@@ -1,13 +1,13 @@
 import ssl
 import feedparser
 
+# Function to parse RSS feed from a given URL
 def parse_rss(rss_url):
     if hasattr(ssl, '_create_unverified_context'):
         ssl._create_default_https_context = ssl._create_unverified_context
 
     print(f"Fetching RSS feed from: {rss_url}")
     
-    # Parse the RSS feed
     feed = feedparser.parse(rss_url)
 
     if feed.bozo:

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 function ArticleList({ selectedSources = [] }) {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [articles, setArticles] = useState([]); // State to store articles
+  const [loading, setLoading] = useState(true); // State to manage loading status
 
   useEffect(() => {
+    // Fetch articles when component mounts
     const fetchArticles = async () => {
       try {
         const response = await fetch('https://my-backend-service-ulh9.onrender.com/articles');
@@ -24,6 +25,7 @@ function ArticleList({ selectedSources = [] }) {
     fetchArticles();
   }, []);
 
+    // Filter articles based on selected sources
   const filteredArticles = articles.filter(article => {
     if (selectedSources.length === 0) return true;
     return selectedSources.some(source => article.link.includes(source));
