@@ -8,11 +8,11 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
-from .summarize import summarize_article
-from .db import get_database, insert_article
-from .rss.fetchRSS import fetch_full_article
+from summarize import summarize_article
+from db import get_database, insert_article
+from rss.fetchRSS import fetch_full_article
 
-load_dotenv('.env')
+load_dotenv()
 
 # Initialize Flask app with CORS enabled
 app = Flask(__name__, static_folder="my-financial-news-app/build")
@@ -95,7 +95,7 @@ def get_multiple_articles(rss_url, number_of_articles=2):
 # Main function to fetch and insert articles into the database
 def main():
     db = get_database(os.getenv('MONGODB_URI'), 'newsData')
-    main_collection = db['Main']
+    main_collection = db['development']
     rss_urls = [
         # Crypto
         'https://Blockchain.News/RSS/',

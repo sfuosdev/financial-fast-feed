@@ -8,7 +8,7 @@ function ArticleList({ selectedSources = [] }) {
     // Fetch articles when component mounts
     const fetchArticles = async () => {
       try {
-        const response = await fetch('https://my-backend-service-ulh9.onrender.com/articles');
+        const response = await fetch('http://127.0.0.1:5000/articles');
         if (response.ok) {
           const data = await response.json();
           setArticles(data);
