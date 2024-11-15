@@ -208,6 +208,25 @@ footer .middle a:hover {
   background-color: #555;
 }
 
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .filter-container {
+    position: relative; 
+    top: auto; 
+    left: 75%; 
+    transform: translateX(-50%); 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    z-index: 1000; 
+  }
+
+  .filter-button {
+    display: inline-block;
+    margin: 0 auto;
+
+  }
+}
+
 .dropdown-menu {
   display: block;
   background-color: #333;
