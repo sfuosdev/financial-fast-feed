@@ -127,4 +127,10 @@ def main():
             print(f"No articles fetched from {rss_url}")
 
 if __name__ == "__main__":
-    main()  
+    # main()
+
+    # block to catch unhandled exceptions
+    try:
+        main()
+    except Exception as e:
+        print(f"Error in main execution: {e}")
