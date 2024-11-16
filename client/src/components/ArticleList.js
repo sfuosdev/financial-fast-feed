@@ -39,13 +39,23 @@ function ArticleList({ selectedSources = [] }) {
     return <div className="no-articles">No articles available</div>;
   }
 
+  // Function to decode HTML
+  function decodeHTML(html){
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
   return (
     <div className="articles-container">
       {filteredArticles.slice(0, 32).map((article, index) => (
         <div key={index} className="article-box">
-          <h3>{article.title}</h3>
+          <h3>{decodeHTML(article.title)}</h3>
           <p>{article.summary}</p>
-          <p className="author">{article.author}</p>
+          {article.author !== "No author available" &&
+            <p className="author">{article.author}</p>
+          }
+          <p className="domain">{article.domain}</p>
           <p className="date">{new Date(article.date).toLocaleDateString()}</p>
           <a href={article.link} target="_blank" rel="noopener noreferrer">Read more</a>
         </div>
