@@ -113,6 +113,11 @@ footer .middle a:hover {
   color: #ffffff;
 }
 
+.article-box p.domain {
+  font-weight: bold;
+  color: #ffffff;
+}
+
 .article-box .date {
   position: absolute;
   bottom: 10px;

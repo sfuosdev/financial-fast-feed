@@ -1,6 +1,7 @@
 import os
 import requests
 import feedparser
+from urllib.parse import urlparse
 from openai import OpenAI
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -8,9 +9,15 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
-from summarize import summarize_article
-from db import get_database, insert_article
-from rss.fetchRSS import fetch_full_article
+try:
+    from summarize import summarize_article               # Syntax caveats between running main.py and flask run
+    from db import get_database, insert_article
+    from rss.fetchRSS import fetch_full_article
+except ImportError:
+    from server.summarize import summarize_article
+    from server.db import get_database, insert_article
+    from server.rss.fetchRSS import fetch_full_article
+
 
 load_dotenv()
 
@@ -34,7 +41,7 @@ def get_articles_api():
     db_name = 'newsData'
     client = MongoClient(db_uri, tlsAllowInvalidCertificates=True)
     db = client[db_name]
-    articles_collection = db['Main']
+    articles_collection = db['development']
 
     # Fetch the 32 most recent articles from MongoDB
     # Sort by '_id' in descending order to get the most recently inserted documents
@@ -42,6 +49,12 @@ def get_articles_api():
     print("Fetched articles from MongoDB:", articles)
 
     return jsonify(articles)
+
+# Function to get the domain name to display on news card
+def get_domain(url):
+    parse = urlparse(url)
+    domain = parse.netloc
+    return domain
 
 # Function to fetch and truncate article text from a given URL
 def fetch_full_article(article_url, max_paragraphs=3):
@@ -84,7 +97,8 @@ def get_multiple_articles(rss_url, number_of_articles=2):
                 "description": item.get("description", "No description available"),
                 "date": publication_date,
                 "author": item.get("author", "No author available"),
-                "summary": summary
+                "summary": summary,
+                "domain": get_domain(item.get("link", "No link available"))
             }
             articles_to_return.append(article_data)
         except Exception as e:
@@ -96,6 +110,7 @@ def get_multiple_articles(rss_url, number_of_articles=2):
 def main():
     db = get_database(os.getenv('MONGODB_URI'), 'newsData')
     main_collection = db['development']
+    main_collection.delete_many({})   #Use to clear the development cluster in mongodb for easy testing, may want to remove during production
     rss_urls = [
         # Crypto
         'https://Blockchain.News/RSS/',
