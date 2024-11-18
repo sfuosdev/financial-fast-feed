@@ -3,58 +3,82 @@ import ArticleList from './components/ArticleList';
 import './App.css';
 
 function App() {
-  const [selectedSources, setSelectedSources] = useState([]); // Stores selected sources for filtering
-  const [showDropdown, setShowDropdown] = useState(false); // Manages visibility of the filter dropdown
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedSources, setSelectedSources] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  // List of available sources for filtering articles
-  const availableSources = [
-    'blockchain.news',
-    'bitcoinist.com',
-    'newsbtc.com',
-    'cointelegraph.com',
-    'reuters.com',
-    'seekingalpha.com',
-    'fortune.com',
-    'tradingeconomics.com',
+  const categories = [
+    { label: 'Crypto', sources: ['blockchain.news', 'bitcoinist.com', 'newsbtc.com', 'cointelegraph.com'] },
+    { label: 'Stocks', sources: ['reuters.com', 'seekingalpha.com', 'fortune.com'] },
+    { label: 'Economics', sources: ['tradingeconomics.com'] },
   ];
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
-  // Add or remove a source from selected sources when the checkbox is toggled
-  const handleSourceChange = (source) => {
-    setSelectedSources((prevSelectedSources) =>
-      prevSelectedSources.includes(source)
-        ? prevSelectedSources.filter((s) => s !== source)
-        : [...prevSelectedSources, source]
+  const handleCategoryChange = (category) => {
+    const sources = categories.find((c) => c.label === category).sources;
+
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+
+    setSelectedSources((prev) =>
+      selectedCategories.includes(category)
+        ? prev.filter((source) => !sources.includes(source))
+        : [...prev, ...sources]
     );
   };
 
+  const handleSourceChange = (source) => {
+    setSelectedSources((prev) =>
+      prev.includes(source)
+        ? prev.filter((s) => s !== source)
+        : [...prev, source]
+    );
+  };
+
+  const filteredSources = [...new Set(selectedSources)];
+
   return (
     <div className="App">
-      <header>
-        Financial Fast Feed
-      </header>
+      <header>Financial Fast Feed</header>
       <div className="filter-container">
         <button onClick={toggleDropdown} className="filter-button">
-          Filter by Source
+          Filter by Category & Source
         </button>
         <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
-          {availableSources.map((source) => (
-            <label key={source}>
-              <input
-                type="checkbox"
-                checked={selectedSources.includes(source)}
-                onChange={() => handleSourceChange(source)}
-              />
-              {source}
-            </label>
+          {categories.map((category) => (
+            <div key={category.label} className="category-group">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.includes(category.label)}
+                  onChange={() => handleCategoryChange(category.label)}
+                />
+                {category.label}
+              </label>
+              <div className="source-list">
+                {category.sources.map((source) => (
+                  <label key={source} className="source-item">
+                    <input
+                      type="checkbox"
+                      checked={selectedSources.includes(source)}
+                      onChange={() => handleSourceChange(source)}
+                    />
+                    {source}
+                  </label>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>
       <div className="articles-container">
-        <ArticleList selectedSources={selectedSources || []} />
+        <ArticleList selectedSources={filteredSources} />
       </div>
       <footer>
         <div className="left">

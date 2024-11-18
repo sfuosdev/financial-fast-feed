@@ -55,6 +55,7 @@ def get_post_insights(title, fullText, model="gpt-3.5-turbo"):
         result = json.loads(content)
 
         summary = result.get("summary", "No summary generated.")
+        
         return {"summary": summary}
 
     except json.JSONDecodeError as decode_error:
