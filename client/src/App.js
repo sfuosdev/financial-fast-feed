@@ -83,8 +83,7 @@ function App() {
       <footer>
         <div className="left">
           <a href="https://github.com/EthanCratchley/finance-news" target="_blank" rel="noopener noreferrer">GitHub</a> | 
-          <a href="mailto:ethankcratchley@gmail.com"> Contact</a> | 
-          <a href="https://buymeacoffee.com/ethancratchley" target="_blank" rel="noopener noreferrer"> Donate</a>
+          <a href="mailto:ethankcratchley@gmail.com"> Contact</a>  
         </div>
         <div className="middle">
           <a href="https://www.ethancratchley.com" target="_blank" rel="noopener noreferrer">

@@ -52,10 +52,7 @@ function ArticleList({ selectedSources = [] }) {
         <div key={index} className="article-box">
           <h3>{decodeHTML(article.title)}</h3>
           <p>{article.summary}</p>
-          {article.author !== "No author available" &&
-            <p className="author">{article.author}</p>
-          }
-          <p className="domain">{article.domain}</p>
+          <p className="author">{article.author}</p>
           <p className="date">{new Date(article.date).toLocaleDateString()}</p>
           <a href={article.link} target="_blank" rel="noopener noreferrer">Read more</a>
         </div>
