@@ -73,7 +73,7 @@ def fetch_full_article(article_url, max_paragraphs=3):
         return f"Error fetching full article: {e}"
 
 # Function to retrieve multiple articles from an RSS feed
-def get_multiple_articles(rss_url, number_of_articles=2):
+def get_multiple_articles(rss_url, number_of_articles=4):
     articles_to_return = []
     feed = feedparser.parse(rss_url)
 
