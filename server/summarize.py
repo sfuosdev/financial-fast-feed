@@ -1,33 +1,37 @@
 import logging
 import os
-import openai
+from openai import OpenAI
 
-def summarize_article(article_text, title=None, model="gpt-3.5-turbo-instruct"): # Switch models soon?
-    openai_api_key = os.getenv('OPENAI_API_KEY')
-    if not openai_api_key:
-        raise ValueError("No OPENAI_API_KEY set for environment")
-
-    client = openai.OpenAI(api_key=openai_api_key)
+def summarize_article(article_text, title=None, model="gpt-4o-mini"):
+    # Initialize the OpenAI client
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     try:
-        # Create the prompt
+        # Construct the prompt
         if title:
-            prompt = (
-                f"You are a financial summarization assistant. Summarize the article below in 25 words or less. "
-                f"Focus on financial trends, market impacts, and actionable insights. "
+            user_content = (
+                f"You are a financial summarization assistant. Summarize the article below in 25 words or less, include key insights and financial metrics."
                 f"Title: '{title}'\n\nArticle: '{article_text}'"
             )
         else:
-            prompt = f"Summarize the given article in 25 words or less:\n\n{article_text}"
+            user_content = f"Summarize the given article in 25 words or less:\n\n{article_text}"
 
-        # Generate the summary
-        response = client.completions.create(
+        # Define the chat messages
+        messages = [
+            {"role": "system", "content": "You are a helpful financial assistant."},
+            {"role": "user", "content": user_content}
+        ]
+
+        # Make the API call
+        response = client.chat.completions.create(
             model=model,
-            prompt=prompt,
-            max_tokens=3800
+            messages=messages,
+            max_tokens=3800,
+            temperature=0.75  # Control the creativity of the response
         )
 
-        return response.choices[0].text.strip()
+        # Extract and return the summary
+        return response.choices[0].message.content.strip()
 
     except Exception as e:
         logging.error(f"Error in summarization: {e}")
