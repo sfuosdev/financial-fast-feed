@@ -43,9 +43,9 @@ def get_articles_api():
     db = client[db_name]
     articles_collection = db['development']
 
-    # Fetch the 32 most recent articles from MongoDB
+    # Fetch the 50 most recent articles from MongoDB
     # Sort by '_id' in descending order to get the most recently inserted documents
-    articles = list(articles_collection.find({}, {'_id': False}).sort("_id", -1).limit(32))
+    articles = list(articles_collection.find({}, {'_id': False}).sort("_id", -1).limit(50))
     print("Fetched articles from MongoDB:", articles)
 
     return jsonify(articles)
@@ -66,16 +66,35 @@ def fetch_full_article(article_url, max_paragraphs=3):
         response = requests.get(article_url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
         article_body = soup.find_all(['p', 'h1', 'h2', 'h3'])
-
+        
         truncated_article = ' '.join([para.get_text() for para in article_body[:max_paragraphs]])
         return truncated_article
     except Exception as e:
         return f"Error fetching full article: {e}"
 
+def sanitize_feed(feed_content):
+    start_index = feed_content.find('<?xml')
+    if start_index == -1:
+        raise ValueError("No valid XML found in the feed content")
+    return feed_content[start_index:]
+
 # Function to retrieve multiple articles from an RSS feed
 def get_multiple_articles(rss_url, number_of_articles=2):
     articles_to_return = []
+    
     feed = feedparser.parse(rss_url)
+    if feed.bozo:
+        print("Feed parsing error:", feed.bozo_exception)
+        headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Connection": "keep-alive"
+        }
+        response = requests.get(rss_url, headers=headers)
+        
+        santitized_content = sanitize_feed(response.text)
+        feed = feedparser.parse(santitized_content)
 
     print(f"Fetching RSS feed from: {rss_url}")
     if not feed.entries:
@@ -117,15 +136,36 @@ def main():
         'https://bitcoinist.com/feed/',
         'https://www.newsbtc.com/feed/',
         'https://cointelegraph.com/rss',
+        'https://multicoin.capital/rss.xml',
+        'https://bitrss.com/rss.xml',
+        
 
-        # Stock Market Movements
-        'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
+        # # Stock Market Movements
+        # 'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
         'https://seekingalpha.com/feed.xml',
         'https://fortune.com/feed/fortune-feeds/?id=3230629',
+        
 
-        # Economic Indicators
-        'https://tradingeconomics.com/canada/rss',
-        'https://tradingeconomics.com/united-states/rss',
+
+        # # Mischellaneous Financial News
+        'https://www.finance-monthly.com/feed/',
+        'http://feeds.benzinga.com/benzinga',
+        'https://bankpediaa.com/feed',
+        'https://www.marketbeat.com/feed/',
+        'https://money.com/money/feed/',
+        'https://www.financialsamurai.com/feed/',
+        'https://moneyweek.com/feed/all',
+        'https://www.europeanfinancialreview.com/feed/',
+        'https://cfi.co/feed',
+        'https://www.worldfinance.com/feed',
+        'https://www.finews.com/news/english-news?format=feed&type=rss',
+        'https://www.financeasia.com/rss/latest',
+        
+
+        # # Economic Indicators
+        # 'https://tradingeconomics.com/canada/rss',
+        # 'https://tradingeconomics.com/united-states/rss',
+        
     ]
 
     for rss_url in rss_urls:
