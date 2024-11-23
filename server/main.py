@@ -156,7 +156,7 @@ def main():
         'https://www.financialsamurai.com/feed/',
         'https://moneyweek.com/feed/all',
         'https://www.europeanfinancialreview.com/feed/',
-        'https://cfi.co/feed',
+        'https://cfi.co/feed', # Double Check
         'https://www.worldfinance.com/feed',
         'https://www.finews.com/news/english-news?format=feed&type=rss',
         'https://www.financeasia.com/rss/latest',

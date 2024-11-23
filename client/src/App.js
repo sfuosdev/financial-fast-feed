@@ -8,10 +8,43 @@ function App() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const categories = [
-    { label: 'Crypto', sources: ['blockchain.news', 'bitcoinist.com', 'newsbtc.com', 'cointelegraph.com'] },
-    { label: 'Stocks', sources: ['reuters.com', 'seekingalpha.com', 'fortune.com'] },
-    { label: 'Economics', sources: ['tradingeconomics.com'] },
+    { 
+      label: 'Crypto', 
+      sources: [
+        'blockchain.news', 
+        'bitcoinist.com', 
+        'newsbtc.com', 
+        'cointelegraph.com', 
+        'multicoin.capital', 
+        'bitrss.com'
+      ] 
+    },
+    { 
+      label: 'Stocks', 
+      sources: [
+        'seekingalpha.com', 
+        'fortune.com'
+      ] 
+    },
+    { 
+      label: 'Miscellaneous Financial News', 
+      sources: [
+        'finance-monthly.com',
+        'benzinga.com',
+        'bankpediaa.com',
+        'marketbeat.com',
+        'money.com',
+        'financialsamurai.com',
+        'moneyweek.com',
+        'europeanfinancialreview.com',
+        'cfi.co',
+        'worldfinance.com',
+        'finews.com',
+        'financeasia.com'
+      ] 
+    }
   ];
+  
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
