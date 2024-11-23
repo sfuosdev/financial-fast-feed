@@ -143,4 +143,3 @@ def main():
 
 if __name__ == "__main__":
     main()  
-    app.run(host='localhost', port=5000)
