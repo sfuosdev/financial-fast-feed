@@ -109,8 +109,7 @@ def get_multiple_articles(rss_url, number_of_articles=2):
 # Main function to fetch and insert articles into the database
 def main():
     db = get_database(os.getenv('MONGODB_URI'), 'newsData')
-    main_collection = db['development']
-    main_collection.delete_many({})   #Use to clear the development cluster in mongodb for easy testing, may want to remove during production
+    main_collection = db['Main']
     rss_urls = [
         # Crypto
         'https://Blockchain.News/RSS/',
@@ -143,4 +142,3 @@ def main():
 
 if __name__ == "__main__":
     main()  
-    app.run(host='localhost', port=5000)

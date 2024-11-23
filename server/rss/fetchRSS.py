@@ -1,4 +1,4 @@
-import trafilatura # Library for web scraping and extracting text from web pages
+import trafilatura 
 
 # Function to fetch and extract the main content of an article from a URL
 def fetch_full_article(url):
