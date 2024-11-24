@@ -142,4 +142,5 @@ def main():
             print(f"No articles fetched from {rss_url}")
 
 if __name__ == "__main__":
+    app.run(host='localhost', port=5000)
     main()  
