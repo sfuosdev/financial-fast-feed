@@ -41,7 +41,7 @@ def get_articles_api():
     db_name = 'newsData'
     client = MongoClient(db_uri, tlsAllowInvalidCertificates=True)
     db = client[db_name]
-    articles_collection = db['development']
+    articles_collection = db['Main']
 
     # Fetch the 32 most recent articles from MongoDB
     # Sort by '_id' in descending order to get the most recently inserted documents
