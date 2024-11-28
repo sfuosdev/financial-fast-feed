@@ -3,9 +3,9 @@ feedparser==6.0.11
 Flask==3.0.3
 Flask_Cors==4.0.0
 openai==1.40.1
-pymongo==4.5.0
-dnspython==2.3.0
+pymongo>=4.6.3
+dnspython>=2.6.1
 Requests==2.32.3
 trafilatura==1.6.4
 python-dotenv==1.0.0
-gunicorn==21.2.0
+gunicorn>=22.0.0

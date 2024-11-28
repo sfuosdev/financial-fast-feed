@@ -1,12 +1,13 @@
 import os
+from flask import Flask, send_from_directory, abort, jsonify
+from flask_cors import CORS
+from werkzeug.utils import safe_join
 import requests
 import feedparser
 from urllib.parse import urlparse
 from openai import OpenAI
 from bs4 import BeautifulSoup
 from datetime import datetime
-from flask import Flask, jsonify, send_from_directory
-from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
 try:
@@ -25,11 +26,17 @@ load_dotenv()
 app = Flask(__name__, static_folder="my-financial-news-app/build")
 CORS(app)
 
-# Serve static files for the React app
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
+    try:
+        # Safely join the path with the static folder
+        safe_path = safe_join(app.static_folder, path)
+    except:
+        # If the path is unsafe, abort with a 404
+        abort(404)
+    
+    if safe_path and os.path.exists(safe_path):
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, 'index.html')
