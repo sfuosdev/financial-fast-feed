@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^7.0.2",
     "react-scripts": "^5.0.1",
     "sisteransi": "^1.0.5",
     "web-vitals": "^2.1.4"
@@ -38,7 +39,7 @@
   },
   "overrides": {
     "postcss": "8.4.31",
-    "nth-check": "2.0.1"                                                                                                       
+    "nth-check": "2.0.1"
   },
   "devDependencies": {
     "patch-package": "^6.4.7",

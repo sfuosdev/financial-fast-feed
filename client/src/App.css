@@ -55,9 +55,14 @@ footer a:hover {
   border: 1px solid #555;
 }
 
-footer .left {
-  padding-left: 10px;
+footer .right {
+  padding-right: 10px; /* Adjust padding to bring it slightly left */
 }
+
+footer .right a {
+  margin-left: -10px; /* Small negative margin to shift left */
+}
+
 
 footer .middle {
   text-align: center;
@@ -295,4 +300,27 @@ footer .middle a:hover {
 .source-item {
   display: block; /* Stack sources vertically */
   margin-left: 0; /* Reset additional margins */
+}
+
+/* Home Button */
+.home-button {
+  position: absolute;
+  top: 55px;
+  left: 20px;
+}
+
+.home-button a {
+  text-decoration: none;
+  color: #e0e0e0; /* Default text color */
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #2b2b2b; /* Default background */
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.home-button a:hover {
+  background-color: #444; /* Darker background on hover */
+  color: #ffffff; /* Text turns white */
 }
