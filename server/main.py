@@ -2,13 +2,14 @@ import os
 import requests
 import feedparser
 from urllib.parse import urlparse
-from openai import OpenAI
+import openai
 from bs4 import BeautifulSoup
 from datetime import datetime
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
+
 try:
     from summarize import summarize_article               # Syntax caveats between running main.py and flask run
     from db import get_database, insert_article
@@ -19,7 +20,7 @@ except ImportError:
     from server.rss.fetchRSS import fetch_full_article
 
 
-load_dotenv()
+load_dotenv() # For development
 
 # Initialize Flask app with CORS enabled
 app = Flask(__name__, static_folder="my-financial-news-app/build")
@@ -57,7 +58,7 @@ def get_domain(url):
     return domain
 
 # Function to fetch and truncate article text from a given URL
-def fetch_full_article(article_url, max_paragraphs=3):
+def fetch_full_article(article_url, max_paragraphs=5):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -86,15 +87,15 @@ def get_multiple_articles(rss_url, number_of_articles=2):
     if feed.bozo:
         print("Feed parsing error:", feed.bozo_exception)
         headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Connection": "keep-alive"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Connection": "keep-alive"
         }
         response = requests.get(rss_url, headers=headers)
         
-        santitized_content = sanitize_feed(response.text)
-        feed = feedparser.parse(santitized_content)
+        sanitized_content = sanitize_feed(response.text)
+        feed = feedparser.parse(sanitized_content)
 
     print(f"Fetching RSS feed from: {rss_url}")
     if not feed.entries:
@@ -120,6 +121,9 @@ def get_multiple_articles(rss_url, number_of_articles=2):
                 "domain": get_domain(item.get("link", "No link available"))
             }
             articles_to_return.append(article_data)
+
+        except openai.OpenAIError as e:
+            print(f"OpenAI API error during summarization: {e}")
         except Exception as e:
             print(f"Error processing article: {item.get('title', 'No title')} - {e}")
 
@@ -132,9 +136,6 @@ def main():
     main_collection.delete_many({})   #Use to clear the development cluster in mongodb for easy testing, may want to remove during production
     rss_urls = [
         # Crypto
-        'https://Blockchain.News/RSS/',
-        'https://bitcoinist.com/feed/',
-        'https://www.newsbtc.com/feed/',
         'https://cointelegraph.com/rss',
         'https://multicoin.capital/rss.xml',
         'https://bitrss.com/rss.xml',
@@ -151,13 +152,10 @@ def main():
         'https://bankpediaa.com/feed',
         'https://www.marketbeat.com/feed/',
         'https://money.com/money/feed/',
-        'https://www.financialsamurai.com/feed/',
         'https://moneyweek.com/feed/all',
         #'https://www.europeanfinancialreview.com/feed/',
-        'https://cfi.co/feed', # Double Check
         'https://www.worldfinance.com/feed',
         'https://www.finews.com/news/english-news?format=feed&type=rss',
-        'https://www.financeasia.com/rss/latest',
         
 
         # # Economic Indicators
@@ -180,5 +178,5 @@ def main():
             print(f"No articles fetched from {rss_url}")
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=5000)
     main()  
+    app.run(host='localhost', port=5000)

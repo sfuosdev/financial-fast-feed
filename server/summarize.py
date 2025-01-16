@@ -1,23 +1,46 @@
-import logging
+from openai import OpenAI
 import os
-import openai
-import json
+import logging
 
-def summarize_article(article_text):
-    # Retrieve OpenAI API key from environment; raise an error if missing
+# Initialize logging
+#logging.basicConfig(level=logging.INFO)
+
+def summarize_article(article_text, max_words=50, tone="informative"):
+
+    # Retrieve OpenAI API key from environment
     openai_api_key = os.getenv('OPENAI_API_KEY')
     if not openai_api_key:
         raise ValueError("No OPENAI_API_KEY set for environment")
 
-    client = openai.OpenAI(api_key=openai_api_key)
+    # Initialize OpenAI client
+    client = OpenAI(api_key=openai_api_key)
+
     try:
-        # Generate a summary with a 25-word prompt limit
-        response = client.completions.create(
-            model="gpt-3.5-turbo-instruct",
-            prompt=f"Summarize the given article in 25 words or less:\n\n{article_text}",
-            max_tokens=3000
+        # Define messages for the summarization
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    f"You are a financial news summarization assistant. Summarize the following article for business professionals by "
+                    f"highlighting the most critical financial and market-related details. Ensure the style is {tone} and strictly under {max_words} words."
+                    f"Focus on revenue figures, market trends, major announcements, and any immediate implications for investors or businesses."
+                ),
+            },
+            {"role": "user", "content": f"Summarize this article:\n\n{article_text}"}
+        ]
+
+        # Call the OpenAI API
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            max_tokens=1500,
+            temperature=0.15  # Lower temperature for more deterministic responses
         )
-        return response.choices[0].text.strip() 
+
+        # Correctly access the content of the response
+        summary = response.choices[0].message.content.strip()
+        return summary
+
     except Exception as e:
-        logging.error(f"Error in summarization: {e}")
-        return f"Error in summarization: {e}"
+        logging.error(f"Error during summarization: {e}")
+        return f"Error during summarization: {e}"

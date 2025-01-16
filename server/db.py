@@ -24,9 +24,10 @@ def get_database(uri, dbname):
 # Function to insert an article document into a collection
 def insert_article(collection, article):
     try:
-        insert_result = collection.insert_one(article)
-        print(f"Inserted article with ID: {insert_result.inserted_id}")
-        return insert_result
+        result = collection.insert_one(article)
+        print(f"Article inserted with ID: {result.inserted_id}")
+        return result
     except Exception as e:
-        print(f"Error inserting article: {e}")
+        print(f"Failed to insert article into MongoDB: {e}")
         return None
+
