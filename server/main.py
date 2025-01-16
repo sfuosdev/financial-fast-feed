@@ -144,8 +144,6 @@ def main():
         # 'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
         'https://seekingalpha.com/feed.xml',
         'https://fortune.com/feed/fortune-feeds/?id=3230629',
-        
-
 
         # # Mischellaneous Financial News
         'https://www.finance-monthly.com/feed/',
@@ -155,7 +153,7 @@ def main():
         'https://money.com/money/feed/',
         'https://www.financialsamurai.com/feed/',
         'https://moneyweek.com/feed/all',
-        'https://www.europeanfinancialreview.com/feed/',
+        #'https://www.europeanfinancialreview.com/feed/',
         'https://cfi.co/feed', # Double Check
         'https://www.worldfinance.com/feed',
         'https://www.finews.com/news/english-news?format=feed&type=rss',

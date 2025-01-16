@@ -36,7 +36,7 @@ function App() {
         'money.com',
         'financialsamurai.com',
         'moneyweek.com',
-        'europeanfinancialreview.com',
+        //'europeanfinancialreview.com',
         'cfi.co',
         'worldfinance.com',
         'finews.com',
