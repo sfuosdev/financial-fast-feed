@@ -11,9 +11,6 @@ function App() {
     { 
       label: 'Crypto', 
       sources: [
-        'blockchain.news', 
-        'bitcoinist.com', 
-        'newsbtc.com', 
         'cointelegraph.com', 
         'multicoin.capital', 
         'bitrss.com'
@@ -34,13 +31,10 @@ function App() {
         'bankpediaa.com',
         'marketbeat.com',
         'money.com',
-        'financialsamurai.com',
         'moneyweek.com',
         //'europeanfinancialreview.com',
-        'cfi.co',
         'worldfinance.com',
         'finews.com',
-        'financeasia.com'
       ] 
     }
   ];
