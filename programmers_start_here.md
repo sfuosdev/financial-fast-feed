@@ -78,62 +78,92 @@ git checkout <branch-name>
 ```
 
 Stage Changes and Check Status:
-```git add <file-name> or git add .```
-```git status```
+```
+git add <file-name> or git add .
+git status
+```
 
 Commit Changes:
-```git commit -m "Your descriptive commit message"```
+```
+git commit -m "Your descriptive commit message"
+```
 
 Push Changes:
-```git push origin <branch-name>```
+```
+git push origin <branch-name>
+```
 
 Merge Branches
-```git checkout <target-branch>```
-```git merge <source-branch>```
+```
+git checkout <target-branch>
+git merge <source-branch>
+```
 
 Note:*If you make a mistake or have a question feel free to ask in discord, when in doubt you are probably better off asking before pushing any code.* 
 
 Pushing a Branch to Remote Repo:
-```git push origin branch-name ```
+```
+git push origin branch-name 
+```
 
 Deleting a Branch:
-```git branch -d branch-name  # Deletes only if the branch is merged
+```
+git branch -d branch-name  # Deletes only if the branch is merged
 git branch -D branch-name  # Forces deletion
-git push origin --delete branch-name # Delete a remote branch```
+git push origin --delete branch-name # Delete a remote branch
+```
 
 Merging a Feature Branch to Development:
-```git checkout development
+```
+git checkout development
 git merge feature-branch-name
-git push origin development```
+git push origin development
+```
 
 Pulling Updated Development Code to Feature Branch:
-```git checkout feature-branch-name
-git pull origin development```
+```
+git checkout feature-branch-name
+git pull origin development
+```
 
 Undoing Github Push:
-```git reset --soft HEAD~1
-git push origin -f```
+```
+git reset --soft HEAD~1
+git push origin -f
+```
 
 Undoing Github Commit:
 Undo the Last Commit (Keep Changes Staged):
-```git reset --soft HEAD~1```
+```
+git reset --soft HEAD~1
+```
 
 Undo the Last Commit (Unstage Changes):
-```git reset --mixed HEAD~1```
+```
+git reset --mixed HEAD~1
+```
 
 Undo the Last Commit (Discard Changes):
-```git reset --hard HEAD~1```
+```
+git reset --hard HEAD~1
+```
 
 
 Undoing a Staged Change:
 To unstage changes but keep them in the working directory:
-```git reset HEAD file-name```
+```
+git reset HEAD file-name
+```
 
 To unstage all changes:
-```git reset```
+```
+git reset
+```
 
 Check Pushes and Commits:
-```git log```
+```
+git log
+```
 
 
 ## Getting Help
