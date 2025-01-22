@@ -9,7 +9,7 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
         <img src="/client/public/staple.jpg" alt="Financial Fast Feed">
     </picture>
     
-[Financial Fast Speed](https://www.financialfastfeed.com/) | [[Where Does Our Data Come From?](#where-does-our-data-come-from) | [Helpful Git Commands](#helpful-git-commands) | [Getting Help](#getting-help)
+[Financial Fast Speed](https://www.financialfastfeed.com/) | [Where Does Our Data Come From?](#where-does-our-data-come-from) | [Helpful Git Commands](#helpful-git-commands) | [Getting Help](#getting-help)
 
 *Ethan Cratchley and SFU OS Dev*
 </div>
