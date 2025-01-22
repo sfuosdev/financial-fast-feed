@@ -4,12 +4,12 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="/client/public/staple.jpg" width="50%">
-        <source media="(prefers-color-scheme: light)" srcset="/client/public/staple.jpg" width="50%">
+        <source media="(prefers-color-scheme: dark)" srcset="/client/public/staple.jpg" width="35%">
+        <source media="(prefers-color-scheme: light)" srcset="/client/public/staple.jpg" width="35%">
         <img src="/client/public/staple.jpg" alt="Financial Fast Feed">
     </picture>
 
-[Website][Financial Fast Speed] | [Where Does Our Data Come From?] | [Helpful Git Commands] | [Getting Help]
+[Financial Fast Speed](https://www.financialfastfeed.com/) | [[Where Does Our Data Come From?](#where-does-our-data-come-from) | [Helpful Git Commands](#helpful-git-commands) | [Getting Help](#getting-help)
 </div>
 
 Financial Fast Feed displays and summmarizes RSS Feeds with GPT-3.5 from 9 different financial news sources. Sources incude Crypto, Economic, and Stock Market news.
