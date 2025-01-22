@@ -12,7 +12,7 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 [Financial Fast Speed](https://www.financialfastfeed.com/) | [[Where Does Our Data Come From?](#where-does-our-data-come-from) | [Helpful Git Commands](#helpful-git-commands) | [Getting Help](#getting-help)
 
 *Ethan Cratchley and SFU OS Dev*
-
+</div>
 
 ## Where Does Our Data Come From?
 ### Sources: Total - 9
