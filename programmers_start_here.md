@@ -50,24 +50,32 @@ git checkout <feature-branch> # We only work off of development and feature bran
 If you need to test code etc. DM ethan on discord for the .env info and put it in the server folder (MAKE SURE IT IS ALWYAS INCLUDED IN .gitignore, NEVER FETCH IT DIRECTLY)
 Run Locally:
 *Ensure previous steps complete.
-```cd server
+```
+cd server
 Run main.py
 cd client
 npm install (First Time)
-npm start```
+npm start
+```
 
 Access the App:
 Frontend: http://localhost:3000/
 Backend: http://localhost:5000/
 
 Keeping Local Up to Date, Pull Latest Changes from Remote:
-```git pull origin <branch-name>```
+```
+git pull origin <branch-name>
+```
 
 Create new Branch - build feature branches off of development 
-```git checkout -b <new-branch-name>```
+```
+git checkout -b <new-branch-name>
+```
 
 Switch to Existing Branch:
-```git checkout <branch-name>```
+```
+git checkout <branch-name>
+```
 
 Stage Changes and Check Status:
 ```git add <file-name> or git add .```
