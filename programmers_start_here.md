@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome onboard! Congradulations on become a developer for the Financial Fast Feed project! This document will contain documentation to help you get started with commiting new features.
+Welcome onboard! Congradulations on becoming a developer for the Financial Fast Feed project! This page will contain documentation to help you get started with commiting new features.
 
 <div align="center">
     <picture>
