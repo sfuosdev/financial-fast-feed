@@ -4,9 +4,9 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="../../client/public/staple-dark.jpg" width="50%">
-        <source media="(prefers-color-scheme: light)" srcset="../../client/public/staple.jpg" width="50%">
-        <img src="../../client/public/staple.jpg" alt="Financial Fast Feed">
+        <source media="(prefers-color-scheme: dark)" srcset="/client/public/staple.jpg" width="50%">
+        <source media="(prefers-color-scheme: light)" srcset="/client/public/staple.jpg" width="50%">
+        <img src="/client/public/staple.jpg" alt="Financial Fast Feed">
     </picture>
 
 [Website][Financial Fast Speed] | [Where Does Our Data Come From?] | [Helpful Git Commands] | [Getting Help]
