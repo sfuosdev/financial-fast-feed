@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome onboard! Congradulations on becoming a developer for the Financial Fast Feed project! This page will contain documentation to help you get started with commiting new features.
+Welcome onboard! Congradulations on become a developer for the Financial Fast Feed project! This document will contain documentation to help you get started with commiting new features.
 
 <div align="center">
     <picture>
@@ -8,15 +8,8 @@ Welcome onboard! Congradulations on becoming a developer for the Financial Fast 
         <source media="(prefers-color-scheme: light)" srcset="/client/public/staple.jpg" width="35%">
         <img src="/client/public/staple.jpg" alt="Financial Fast Feed">
     </picture>
-
-    <a href="https://www.financialfastfeed.com/" style="text-decoration: none;">Financial Fast Speed</a> |
-    <a href="#where-does-our-data-come-from" style="text-decoration: none;">Where Does Our Data Come From?</a> |
-    <a href="#helpful-git-commands" style="text-decoration: none;">Helpful Git Commands</a> |
-    <a href="#getting-help" style="text-decoration: none;">Getting Help</a>
-
-</div>
-
-Financial Fast Feed displays and summmarizes RSS Feeds with GPT-3.5 from 9 different financial news sources. Sources incude Crypto, Economic, and Stock Market news.
+    
+[Financial Fast Speed](https://www.financialfastfeed.com/) | [[Where Does Our Data Come From?](#where-does-our-data-come-from) | [Helpful Git Commands](#helpful-git-commands) | [Getting Help](#getting-help)
 
 *Ethan Cratchley and SFU OS Dev*
 
