@@ -43,7 +43,7 @@ def get_articles_api():
     db_name = 'newsData'
     client = MongoClient(db_uri, tls=True, tlsAllowInvalidCertificates=True)
     db = client[db_name]
-    articles_collection = db['Main']
+    articles_collection = db['Main2']
 
     # Fetch the 32 most recent articles from MongoDB
     # Sort by '_id' in descending order to get the most recently inserted documents
@@ -114,19 +114,32 @@ def main():
     main_collection = db['Main']
     rss_urls = [
         # Crypto
-        'https://Blockchain.News/RSS/',
-        'https://bitcoinist.com/feed/',
-        'https://www.newsbtc.com/feed/',
         'https://cointelegraph.com/rss',
+        'https://multicoin.capital/rss.xml',
+        'https://bitrss.com/rss.xml',
+        
 
-        # Stock Market Movements
-        'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
+        # # Stock Market Movements
+        # 'https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best',
         'https://seekingalpha.com/feed.xml',
         'https://fortune.com/feed/fortune-feeds/?id=3230629',
 
-        # Economic Indicators
-        'https://tradingeconomics.com/canada/rss',
-        'https://tradingeconomics.com/united-states/rss',
+        # # Mischellaneous Financial News
+        'https://www.finance-monthly.com/feed/',
+        'http://feeds.benzinga.com/benzinga',
+        'https://bankpediaa.com/feed',
+        'https://www.marketbeat.com/feed/',
+        'https://money.com/money/feed/',
+        'https://moneyweek.com/feed/all',
+        #'https://www.europeanfinancialreview.com/feed/',
+        'https://www.worldfinance.com/feed',
+        'https://www.finews.com/news/english-news?format=feed&type=rss',
+        
+
+        # # Economic Indicators
+        # 'https://tradingeconomics.com/canada/rss',
+        # 'https://tradingeconomics.com/united-states/rss',
+        
     ]
 
     for rss_url in rss_urls:
