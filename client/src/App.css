@@ -280,19 +280,19 @@ footer .middle a:hover {
 }
 
 .category-group {
-  margin-bottom: 10px; 
+  margin-bottom: 10px; /* Add spacing between categories */
 }
 
 .category-group > label {
-  font-weight: bold; 
-  margin-left: 0; 
+  font-weight: bold; /* Make category headers stand out */
+  margin-left: 0; /* Ensure categories are not indented */
 }
 
 .source-list {
-  margin-left: 20px; 
+  margin-left: 20px; /* Indent the sources */
 }
 
 .source-item {
-  display: block; 
-  margin-left: 0; 
+  display: block; /* Stack sources vertically */
+  margin-left: 0; /* Reset additional margins */
 }
