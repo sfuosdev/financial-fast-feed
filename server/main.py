@@ -9,8 +9,10 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
+
+# Handle relative imports for local modules
 try:
-    from summarize import summarize_article               # Syntax caveats between running main.py and flask run
+    from summarize import summarize_article               
     from db import get_database, insert_article
     from rss.fetchRSS import fetch_full_article
 except ImportError:
@@ -29,7 +31,7 @@ CORS(app)
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, 'index.html')
@@ -39,7 +41,7 @@ def serve(path):
 def get_articles_api():
     db_uri = os.getenv('MONGODB_URI')
     db_name = 'newsData'
-    client = MongoClient(db_uri, tlsAllowInvalidCertificates=True)
+    client = MongoClient(db_uri, tls=True, tlsAllowInvalidCertificates=True)
     db = client[db_name]
     articles_collection = db['Main']
 
