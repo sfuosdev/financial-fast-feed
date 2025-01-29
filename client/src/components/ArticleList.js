@@ -8,7 +8,7 @@ function ArticleList({ selectedSources = [] }) {
     // Fetch articles when component mounts
     const fetchArticles = async () => {
       try {
-        const response = await fetch('https://my-backend-service-ulh9.onrender.com/articles');
+        const response = await fetch('http://127.0.0.1:5000/articles');
         if (response.ok) {
           const data = await response.json();
           setArticles(data);
@@ -25,7 +25,7 @@ function ArticleList({ selectedSources = [] }) {
     fetchArticles();
   }, []);
 
-    // Filter articles based on selected sources
+  // Filter articles based on selected sources
   const filteredArticles = articles.filter(article => {
     if (selectedSources.length === 0) return true;
     return selectedSources.some(source => article.link.includes(source));
@@ -39,20 +39,19 @@ function ArticleList({ selectedSources = [] }) {
     return <div className="no-articles">No articles available</div>;
   }
 
-  // Function to decode HTML
-  function decodeHTML(html){
-    const txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
+  // Function to sanitize text
+  function sanitizeText(text) {
+    if (!text) return ''; // Handle empty or undefined text
+    return text.replace(/<\|endoftext\|>/g, '').replace(/[^\x20-\x7E]/g, ''); // Removes unwanted artifacts
   }
 
   return (
     <div className="articles-container">
       {filteredArticles.slice(0, 32).map((article, index) => (
         <div key={index} className="article-box">
-          <h3>{decodeHTML(article.title)}</h3>
-          <p>{article.summary}</p>
-          <p className="author">{article.author}</p>
+          <h3>{sanitizeText(article.title)}</h3>
+          <p>{sanitizeText(article.summary)}</p>
+          <p className="author">{sanitizeText(article.author)}</p>
           <p className="date">{new Date(article.date).toLocaleDateString()}</p>
           <a href={article.link} target="_blank" rel="noopener noreferrer">Read more</a>
         </div>
