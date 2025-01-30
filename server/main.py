@@ -21,6 +21,7 @@ except ImportError:
     from server.rss.fetchRSS import fetch_full_article
 
 
+
 load_dotenv()
 
 # Initialize Flask app with CORS enabled
@@ -45,12 +46,14 @@ def get_articles_api():
     db = client[db_name]
     articles_collection = db['Main2']
 
-    # Fetch the 32 most recent articles from MongoDB
-    # Sort by '_id' in descending order to get the most recently inserted documents
-    articles = list(articles_collection.find({}, {'_id': False}).sort("_id", -1).limit(32))
-    print("Fetched articles from MongoDB:", articles)
-
-    return jsonify(articles)
+    # Fetch the 32 most recent articles
+    try:
+        articles = list(articles_collection.find({}, {'_id': False}).sort("_id", -1).limit(32))
+        print("Fetched articles:", articles)
+        return jsonify(articles)
+    except Exception as e:
+        print("Error fetching articles:", e)
+        return jsonify({"error": str(e)})
 
 # Function to get the domain name to display on news card
 def get_domain(url):
@@ -111,7 +114,7 @@ def get_multiple_articles(rss_url, number_of_articles=2):
 # Main function to fetch and insert articles into the database
 def main():
     db = get_database(os.getenv('MONGODB_URI'), 'newsData')
-    main_collection = db['Main']
+    main_collection = db['Main2']
     rss_urls = [
         # Crypto
         'https://cointelegraph.com/rss',
