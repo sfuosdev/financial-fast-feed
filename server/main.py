@@ -9,6 +9,7 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
+from auth import auth_bp
 try:
     from summarize import summarize_article               # Syntax caveats between running main.py and flask run
     from db import get_database, insert_article
@@ -25,9 +26,13 @@ load_dotenv()
 app = Flask(__name__, static_folder="my-financial-news-app/build")
 CORS(app)
 
+app.register_blueprint(auth_bp, url_prefix="/auth")
+
+
 # Serve static files for the React app
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
+
 def serve(path):
     if path != "" and os.path.exists(app.static_folder + '/' + path):
         return send_from_directory(app.static_folder, path)
@@ -142,3 +147,5 @@ def main():
 
 if __name__ == "__main__":
     main()  
+    app.run(host='localhost', port=5000)
+    

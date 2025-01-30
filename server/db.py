@@ -1,9 +1,15 @@
 from pymongo import MongoClient
 import logging
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
+
+MONGO_URI = os.getenv("MONGODB_URI")
 # Function to connect to MongoDB
 def connect_to_mongodb(uri):
     try:
+        print(f"🔍 Trying to connect to MongoDB: {MONGO_URI}")  # Debugging line
         client = MongoClient(uri)
         client.admin.command('ping')
         logging.info("Successfully connected to MongoDB!")
