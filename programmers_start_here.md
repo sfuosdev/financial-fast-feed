@@ -17,9 +17,9 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 ## Where Does Our Data Come From?
 ### Sources: Total - 9
 ### Crypto
-https://Blockchain.News/RSS/
+- [Blockchain](https://Blockchain.News/RSS/)
 https://bitcoinist.com/feed/
-https://www.newsbtc.com/feed/
+https://www.newsbtc.com/feed/::wq
 https://cointelegraph.com/rss
 https://cointelegraph.com/rss
 https://multicoin.capital/rss.xml
