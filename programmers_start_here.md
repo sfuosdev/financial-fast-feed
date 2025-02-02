@@ -17,9 +17,7 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 ## Where Does Our Data Come From?
 ### Total Sources: **20**
 
----
-
-### **Crypto (6 Sources)**
+### **Crypto**
 - [Blockchain](https://Blockchain.News/RSS/)
 - [Bitcoinist](https://bitcoinist.com/feed/)
 - [NewsBTC](https://www.newsbtc.com/feed/)
@@ -27,22 +25,16 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 - [Multicoin Capital](https://multicoin.capital/rss.xml)
 - [BitRSS](https://bitrss.com/rss.xml)
 
----
-
-### **Stock Market Movements (3 Sources)**
+### **Stock Market Movements**
 - [Reuters Business & Finance](https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best)
 - [Seeking Alpha](https://seekingalpha.com/feed.xml)
 - [Fortune](https://fortune.com/feed/fortune-feeds/?id=3230629)
 
----
-
-### **Economic Indicators (2 Sources)**
+### **Economic Indicators**
 - [Trading Economics Canada](https://tradingeconomics.com/canada/rss)
 - [Trading Economics US](https://tradingeconomics.com/united-states/rss)
 
----
-
-### **Miscellaneous Financial News (9 Sources)**
+### **Miscellaneous Financial News**
 - [Finance Monthly](https://www.finance-monthly.com/feed/)
 - [Benzinga](http://feeds.benzinga.com/benzinga)
 - [Bankpediaa](https://bankpediaa.com/feed)
