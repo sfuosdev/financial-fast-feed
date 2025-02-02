@@ -18,31 +18,30 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 ### Sources: Total - 9
 ### Crypto
 - [Blockchain](https://Blockchain.News/RSS/)
-https://bitcoinist.com/feed/
-https://www.newsbtc.com/feed/::wq
-https://cointelegraph.com/rss
-https://cointelegraph.com/rss
-https://multicoin.capital/rss.xml
-https://bitrss.com/rss.xml
+- [Bitcoinist](https://bitcoinist.com/feed/)
+- [NewsBTC](https://www.newsbtc.com/feed/)
+- [Cointelegraph](https://cointelegraph.com/rss)
+- [Multicoin Capital](https://multicoin.capital/rss.xml)
+- [BitRSS](https://bitrss.com/rss.xml)
 
 ### Stock Market Movements
-https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best
-https://seekingalpha.com/feed.xml
-https://fortune.com/feed/fortune-feeds/?id=3230629
+- [Reuters Business & Finance](https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best)
+- [Seeking Alpha](https://seekingalpha.com/feed.xml)
+- [Fortune](https://fortune.com/feed/fortune-feeds/?id=3230629)
 
 ### Economic Indicators
-https://tradingeconomics.com/canada/rss
-https://tradingeconomics.com/united-states/rss
+- [Trading Economics Canada](https://tradingeconomics.com/canada/rss)
+- [Trading Economics US](https://tradingeconomics.com/united-states/rss)
 
-### Mischellaneous Financial News
-https://www.finance-monthly.com/feed/
-http://feeds.benzinga.com/benzinga
-https://bankpediaa.com/feed
-https://www.marketbeat.com/feed/
-https://money.com/money/feed/
-https://moneyweek.com/feed/all
-https://www.worldfinance.com/feed
-https://www.finews.com/news/english-news?format=feed&type=rss
+### Miscellaneous Financial News
+- [Finance Monthly](https://www.finance-monthly.com/feed/)
+- [Benzinga](http://feeds.benzinga.com/benzinga)
+- [Bankpediaa](https://bankpediaa.com/feed)
+- [MarketBeat](https://www.marketbeat.com/feed/)
+- [Money](https://money.com/money/feed/)
+- [MoneyWeek](https://moneyweek.com/feed/all)
+- [World Finance](https://www.worldfinance.com/feed)
+- [Finews English](https://www.finews.com/news/english-news?format=feed&type=rss)
 
 
 
