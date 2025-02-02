@@ -15,38 +15,34 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 </div>
 
 ## Where Does Our Data Come From?
-### Sources: Total - 9
-### Crypto
-https://Blockchain.News/RSS/
-https://bitcoinist.com/feed/
-https://www.newsbtc.com/feed/
-https://cointelegraph.com/rss
-https://cointelegraph.com/rss
-https://multicoin.capital/rss.xml
-https://bitrss.com/rss.xml
+### Total Sources: **20**
 
-### Stock Market Movements
-https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best
-https://seekingalpha.com/feed.xml
-https://fortune.com/feed/fortune-feeds/?id=3230629
+### **Crypto**
+- [Blockchain](https://Blockchain.News/RSS/)
+- [Bitcoinist](https://bitcoinist.com/feed/)
+- [NewsBTC](https://www.newsbtc.com/feed/)
+- [Cointelegraph](https://cointelegraph.com/rss)
+- [Multicoin Capital](https://multicoin.capital/rss.xml)
+- [BitRSS](https://bitrss.com/rss.xml)
 
-### Economic Indicators
-https://tradingeconomics.com/canada/rss
-https://tradingeconomics.com/united-states/rss
+### **Stock Market Movements**
+- [Reuters Business & Finance](https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best)
+- [Seeking Alpha](https://seekingalpha.com/feed.xml)
+- [Fortune](https://fortune.com/feed/fortune-feeds/?id=3230629)
 
-### Mischellaneous Financial News
-https://www.finance-monthly.com/feed/
-http://feeds.benzinga.com/benzinga
-https://bankpediaa.com/feed
-https://www.marketbeat.com/feed/
-https://money.com/money/feed/
-https://moneyweek.com/feed/all
-https://www.worldfinance.com/feed
-https://www.finews.com/news/english-news?format=feed&type=rss
+### **Economic Indicators**
+- [Trading Economics Canada](https://tradingeconomics.com/canada/rss)
+- [Trading Economics US](https://tradingeconomics.com/united-states/rss)
 
-
-
-        
+### **Miscellaneous Financial News**
+- [Finance Monthly](https://www.finance-monthly.com/feed/)
+- [Benzinga](http://feeds.benzinga.com/benzinga)
+- [Bankpediaa](https://bankpediaa.com/feed)
+- [MarketBeat](https://www.marketbeat.com/feed/)
+- [Money](https://money.com/money/feed/)
+- [MoneyWeek](https://moneyweek.com/feed/all)
+- [World Finance](https://www.worldfinance.com/feed)
+- [Finews English](https://www.finews.com/news/english-news?format=feed&type=rss)
 
 ## Helpful Git Commands
 
@@ -183,6 +179,71 @@ git log
 ## Getting Help
 
 Join our [discord]: https://discord.gg/cNKsqMQum9 to chat with other developers working on this project!
+
+## How Does This Website Work?
+
+## Key Components of the Project
+
+- client Folder: A React-based front-end. React is used to dynamically build the content of the website using files App.js, index.js, components/ArticleList.js.
+- server Folder: Handles backend logic (fetching and processing data like RSS feeds).
+
+### How it works
+
+How It Works:
+Entry Point (index.html):
+
+The index.html is the main entry point of the website. However, in React apps, this file is often minimal and only includes a root <div>.
+Example: 
+
+link to index.html
+
+The actual content isn't hardcoded here—it is dynamically injected into the page by React components.
+
+React Takes Over:
+
+The index.js file (inside src/) is the main file that initializes the React app and mounts it to the root <div> in index.html.
+Example:
+
+link to index.js
+
+
+document.getElementById('root'): Finds the <div id="root"></div> inside your index.html.
+ReactDOM.createRoot: Initializes the React application and binds it to this root element.
+
+App: This is the main React component. It likely imports and renders other components (like ArticleList.js).
+
+Inside App.js, we have:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
