@@ -15,8 +15,11 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 </div>
 
 ## Where Does Our Data Come From?
-### Sources: Total - 9
-### Crypto
+### Total Sources: **20**
+
+---
+
+### **Crypto (6 Sources)**
 - [Blockchain](https://Blockchain.News/RSS/)
 - [Bitcoinist](https://bitcoinist.com/feed/)
 - [NewsBTC](https://www.newsbtc.com/feed/)
@@ -24,16 +27,22 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 - [Multicoin Capital](https://multicoin.capital/rss.xml)
 - [BitRSS](https://bitrss.com/rss.xml)
 
-### Stock Market Movements
+---
+
+### **Stock Market Movements (3 Sources)**
 - [Reuters Business & Finance](https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best)
 - [Seeking Alpha](https://seekingalpha.com/feed.xml)
 - [Fortune](https://fortune.com/feed/fortune-feeds/?id=3230629)
 
-### Economic Indicators
+---
+
+### **Economic Indicators (2 Sources)**
 - [Trading Economics Canada](https://tradingeconomics.com/canada/rss)
 - [Trading Economics US](https://tradingeconomics.com/united-states/rss)
 
-### Miscellaneous Financial News
+---
+
+### **Miscellaneous Financial News (9 Sources)**
 - [Finance Monthly](https://www.finance-monthly.com/feed/)
 - [Benzinga](http://feeds.benzinga.com/benzinga)
 - [Bankpediaa](https://bankpediaa.com/feed)
@@ -42,7 +51,6 @@ Welcome onboard! Congradulations on become a developer for the Financial Fast Fe
 - [MoneyWeek](https://moneyweek.com/feed/all)
 - [World Finance](https://www.worldfinance.com/feed)
 - [Finews English](https://www.finews.com/news/english-news?format=feed&type=rss)
-
 
 
         
