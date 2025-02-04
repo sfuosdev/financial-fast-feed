@@ -1,1 +1,24 @@
+name: ON-PUSH
+
+on:
+  push:
+    branches: [github-actions]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: CHECKOUT
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # - name: NPM Install, Build and Tests
+      #   run: |
+      #     mkdir out
+      #     npm install
+      #     npm run build --if-present
+      #     npm run test --if-present
+      #     rsync -av --exclude 'out' ./ out
+      #     ls -la
 
