@@ -40,6 +40,7 @@ def register():
     return jsonify({"message": "User registered successfully"}), 201
 
 @auth_bp.route("/login", methods=["Post"])
+
 def login():
     data = request.get_json()
     
@@ -64,3 +65,37 @@ def login():
     
     token = jwt.encode(token_payload, SECRET_KEY, algorithm="HS256")
     return jsonify({"access_token": token, "username": user["username"]}), 200
+
+# JWT Authentification 
+# Anyone can access the API route, users need to send valid JWT token for routes
+
+# Decorator
+def token_required(f):
+    # Accept any arguments the inital function accepts
+    # Handles the token verificatino and calls route funcion if succesful
+    def decorated_function(*args, **kwargs):
+        token = request.headers.get("Authorization") # Extract your token
+        if not token:
+            return jsonify({"error": "Token is missing!"}), 401  # Unauthorized
+        
+        try:
+            token = token.split(" ")[1]  # Remove 'Bearer ' prefix
+            decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])  # Verify token
+            user_email = decoded_token["sub"]  # Extract email from token payload
+        except jwt.ExpiredSignatureError:
+            return jsonify({"error": "Token has expired!"}), 401  # Unauthorized
+        except jwt.InvalidTokenError:
+            return jsonify({"error": "Invalid token!"}), 401  # Unauthorized
+
+        return f(user_email, *args, **kwargs)  # Pass the user email to the protected route
+
+    decorated_function.__name__ = f.__name__
+    return decorated_function
+
+
+@auth_bp.route("/protected", methods=["GET"])
+@token_required
+def protected_route(user_email):
+    return jsonify({"message": f"Access granted to {user_email}!"}), 200
+
+    
