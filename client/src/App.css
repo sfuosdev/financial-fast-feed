@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 header, footer {
@@ -37,7 +38,6 @@ footer {
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  position: relative;
 }
 
 footer a {
@@ -71,13 +71,18 @@ footer .middle a:hover {
 }
 
 .App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
+  padding-x: 20px;
+  padding-top: 20px;
   box-sizing: border-box;
 }
 
 .articles-container {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(385px, 1fr));
   gap: 20px;
