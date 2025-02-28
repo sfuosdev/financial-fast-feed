@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import ArticleList from './components/ArticleList';
-import './App.css';
+import React, { useState } from "react";
+import ArticleList from "./components/ArticleList";
+import "./App.css";
 
 function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -8,37 +8,29 @@ function App() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const categories = [
-    { 
-      label: 'Crypto', 
-      sources: [
-        'cointelegraph.com', 
-        'multicoin.capital', 
-        'bitrss.com'
-      ] 
+    {
+      label: "Crypto",
+      sources: ["cointelegraph.com", "multicoin.capital", "bitrss.com"],
     },
-    { 
-      label: 'Stocks', 
-      sources: [
-        'seekingalpha.com', 
-        'fortune.com'
-      ] 
+    {
+      label: "Stocks",
+      sources: ["seekingalpha.com", "fortune.com"],
     },
-    { 
-      label: 'Miscellaneous Financial News', 
+    {
+      label: "Miscellaneous Financial News",
       sources: [
-        'finance-monthly.com',
-        'benzinga.com',
-        'bankpediaa.com',
-        'marketbeat.com',
-        'money.com',
-        'moneyweek.com',
+        "finance-monthly.com",
+        "benzinga.com",
+        "bankpediaa.com",
+        "marketbeat.com",
+        "money.com",
+        "moneyweek.com",
         //'europeanfinancialreview.com',
-        'worldfinance.com',
-        'finews.com',
-      ] 
-    }
+        "worldfinance.com",
+        "finews.com",
+      ],
+    },
   ];
-  
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -74,10 +66,14 @@ function App() {
     <div className="App">
       <header>Financial Fast Feed</header>
       <div className="filter-container">
-        <button onClick={toggleDropdown} className="filter-button">
+        <button
+          onClick={toggleDropdown}
+          className="filter-button"
+          type="button"
+        >
           Filter by Category & Source
         </button>
-        <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
+        <div className={`dropdown-menu ${showDropdown ? "show" : ""}`}>
           {categories.map((category) => (
             <div key={category.label} className="category-group">
               <label>
@@ -109,11 +105,21 @@ function App() {
       </div>
       <footer>
         <div className="left">
-          <a href="https://github.com/EthanCratchley/finance-news" target="_blank" rel="noopener noreferrer">GitHub</a> | 
-          <a href="mailto:ethankcratchley@gmail.com"> Contact</a>  
+          <a
+            href="https://github.com/EthanCratchley/finance-news"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>{" "}
+          |<a href="mailto:ethankcratchley@gmail.com"> Contact</a>
         </div>
         <div className="middle">
-          <a href="https://www.ethancratchley.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.ethancratchley.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Created by Ethan Cratchley and SFU OS Development
           </a>
         </div>
